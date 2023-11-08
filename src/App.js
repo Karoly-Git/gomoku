@@ -4,6 +4,7 @@ import './App.css';
 function App() {
   /*
     - Make an n x m matrix, where n represents the num of columns, m represents the num of rows.
+    - Draw a board based on the Matrix.
   */
 
 
@@ -18,6 +19,19 @@ function App() {
 
   return (
     <div className="App">
+      <div className='board'>
+        {
+          matrix.map((row, rIndex) =>
+            <div className='row' key={rIndex}>
+              {
+                row.map((cell, cIndex) =>
+                  <div className='cell' key={cIndex}></div>
+                )
+              }
+            </div>
+          )
+        }
+      </div>
     </div>
   );
 }
