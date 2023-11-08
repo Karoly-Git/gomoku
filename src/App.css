@@ -22,10 +22,19 @@ body {
   display: flex;
 }
 .App .board .row .cell {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   border: 1px solid red;
   width: 2rem;
   height: 2rem;
 }
 .App .board .row .cell:hover {
   background-color: green;
+}
+.App .board .row .cell .disk {
+  width: 80%;
+  height: 80%;
+  border-radius: 50%;
+  background-color: red;
 }/*# sourceMappingURL=App.css.map */

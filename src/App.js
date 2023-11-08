@@ -7,6 +7,7 @@ function App() {
     - Draw a board based on the Matrix.
     - Get cell position when clicking on a cell.
     - When clicking on a cell, set the 'used' value to 'false' for the corresponding element in the matrix.
+    - Draw a disk in the clicked cell.
   */
 
 
@@ -37,7 +38,9 @@ function App() {
             <div className='row' key={rIndex}>
               {
                 row.map((cell, cIndex) =>
-                  <div className='cell' key={cIndex} onClick={() => handleClick(cIndex, rIndex)}></div>
+                  <div className='cell' key={cIndex} onClick={() => handleClick(cIndex, rIndex)}>
+                    {matrix[rIndex][cIndex].used ? <div className='disk'></div> : <></>}
+                  </div>
                 )
               }
             </div>

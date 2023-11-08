@@ -22,12 +22,22 @@ body {
       display: flex;
 
       .cell {
+        display: flex;
+        justify-content: center;
+        align-items: center;
         border: 1px solid red;
         width: 2rem;
         height: 2rem;
 
         &:hover {
           background-color: green;
+        }
+
+        .disk {
+          width: 80%;
+          height: 80%;
+          border-radius: 50%;
+          background-color: red;
         }
       }
     }
