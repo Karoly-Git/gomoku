@@ -12,6 +12,7 @@ function App() {
     7.  Check horizontally if active player won.
     8.  Check vertically if active player won.
     9.  Check diagonal-A is active player won.
+    10. Check diagonal-B is active player won.
   */
 
   const [activePlayer, setActivePlayer] = useState('A');
@@ -28,17 +29,21 @@ function App() {
   function handleClick(x, y) {
     updateCellState(x, y);
     checkIsAvaliableCell();
-    //checkHorizontal(x, y)
-    //checkVertical(x, y);
+
+    checkHorizontal(x, y)
+    checkVertical(x, y);
     checkDiagonal_A(x, y);
+    checkDiagonal_B(x, y);
   }
 
   function updateCellState(x, y) {
     let newMatrix = [...matrix];
+
     if (newMatrix[y][x].player === '') {
       newMatrix[y][x].player = activePlayer;
       setActivePlayer(newMatrix[y][x].player === 'A' ? 'B' : 'A');
     }
+
     setMatrix(newMatrix);
   }
 
@@ -50,6 +55,7 @@ function App() {
       if (matrix[y][i].player === '' || matrix[y][i].player === (activePlayer === 'A' ? 'B' : 'A')) {
         break;
       }
+
       startX = i;
     }
 
@@ -75,6 +81,7 @@ function App() {
       if (matrix[i][x].player === '' || matrix[i][x].player === (activePlayer === 'A' ? 'B' : 'A')) {
         break;
       }
+
       startY = i;
     }
 
@@ -105,18 +112,19 @@ function App() {
       if (matrix[indexY][indexX].player === '' || matrix[indexY][indexX].player === (activePlayer === 'A' ? 'B' : 'A')) {
         break;
       }
+
       startX = indexX;
       startY = indexY;
+
       indexX--;
       indexY--;
     }
-
-    //console.log(startX, startY);
 
     while (startX < matrix[0].length && startY < matrix.length) {
       if (matrix[startY][startX].player === '' || matrix[startY][startX].player === (activePlayer === 'A' ? 'B' : 'A')) {
         break;
       }
+
       count++;
 
       if (count >= 5) {
@@ -127,12 +135,49 @@ function App() {
       startX++;
       startY++;
     }
+  }
+
+  function checkDiagonal_B(x, y) {
+    let count = 0;
+
+    let indexX = x;
+    let indexY = y;
+
+    let startX;
+    let startY;
+
+    while (indexX <= matrix[0].length - 1 && indexY >= 0) {
+      if (matrix[indexY][indexX].player === '' || matrix[indexY][indexX].player === (activePlayer === 'A' ? 'B' : 'A')) {
+        break;
+      }
+      startX = indexX;
+      startY = indexY;
+      indexX++;
+      indexY--;
+    }
+
+    while (startX > 0 && startY < matrix.length) {
+      if (matrix[startY][startX].player === '' || matrix[startY][startX].player === (activePlayer === 'A' ? 'B' : 'A')) {
+        break;
+      }
+
+      count++;
+
+      if (count >= 5) {
+        console.log(activePlayer === 'A' ? 'Player-A won!' : 'Player-B won!');
+        break;
+      }
+
+      startX--;
+      startY++;
+    }
 
     console.log(count);
   }
 
   function checkIsAvaliableCell() {
     let isAvailableCell = false;
+
     for (let row of matrix) {
       for (let cell of row) {
         if (cell.player === '') {
@@ -141,6 +186,7 @@ function App() {
         }
       }
     }
+
     if (!isAvailableCell) {
       setIsAvailableCell(false);
     }
