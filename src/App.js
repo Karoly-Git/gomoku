@@ -5,6 +5,7 @@ function App() {
   /*
     - Make an n x m matrix, where n represents the num of columns, m represents the num of rows.
     - Draw a board based on the Matrix.
+    - Get cell position when clicking.
   */
 
 
@@ -16,6 +17,9 @@ function App() {
 
   let matrix = makeMatrix();
 
+  function handleClick(x, y) {
+    console.log(x, y);
+  }
 
   return (
     <div className="App">
@@ -25,7 +29,7 @@ function App() {
             <div className='row' key={rIndex}>
               {
                 row.map((cell, cIndex) =>
-                  <div className='cell' key={cIndex}></div>
+                  <div className='cell' key={cIndex} onClick={() => handleClick(cIndex, rIndex)}></div>
                 )
               }
             </div>
