@@ -38,7 +38,7 @@ body {
   border-radius: 50%;
 }
 .App .board .row .cell .disk-A {
-  background-color: red;
+  background-color: yellow;
 }
 .App .board .row .cell .disk-B {
   background-color: blue;
