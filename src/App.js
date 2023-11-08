@@ -1,11 +1,12 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './App.css';
 
 function App() {
   /*
     - Make an n x m matrix, where n represents the num of columns, m represents the num of rows.
     - Draw a board based on the Matrix.
-    - Get cell position when clicking.
+    - Get cell position when clicking on a cell.
+    - When clicking on a cell, set the 'used' value to 'false' for the corresponding element in the matrix.
   */
 
 
@@ -15,10 +16,17 @@ function App() {
     return matrix;
   };
 
-  let matrix = makeMatrix();
+  const [matrix, setMatrix] = useState(makeMatrix());
 
   function handleClick(x, y) {
     console.log(x, y);
+    setUsedTrue(x, y);
+  }
+
+  function setUsedTrue(x, y) {
+    let newMatrix = [...matrix];
+    newMatrix[y][x].used = true;
+    setMatrix(newMatrix);
   }
 
   return (
