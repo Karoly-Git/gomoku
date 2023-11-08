@@ -10,6 +10,7 @@ function App() {
     5.  Draw a disk in the clicked cell, but draw disks in different colors for the players, prevent overwriting the existing disks, set hover effect when cell is avaliable.
     6.  Check if there is available cell.
     7.  Check horizontally if active player won.
+    8.  Check vertically if active player won.
   */
 
   const [activePlayer, setActivePlayer] = useState('A');
@@ -27,6 +28,7 @@ function App() {
     updateCellState(x, y);
     checkIsAvaliableCell();
     checkHorizontal(x, y)
+    checkVertical(x, y);
   }
 
   function updateCellState(x, y) {
@@ -57,6 +59,30 @@ function App() {
       }
 
       if (!matrix[y][k + 1] || matrix[y][k].player !== matrix[y][k + 1].player) {
+        break;
+      }
+    }
+  }
+
+  function checkVertical(x, y) {
+    let startY = y;
+    let count = 0;
+
+    for (let i = y; i >= 0; i--) {
+      if (matrix[i][x].player === '' || matrix[i][x].player === (activePlayer === 'A' ? 'B' : 'A')) {
+        break;
+      }
+      startY = i;
+    }
+
+    for (let k = startY; k < matrix.length; k++) {
+      count++
+
+      if (count >= 3) {
+        console.log(activePlayer === 'A' ? 'Player-A won!' : 'Player-B won!')
+      }
+
+      if (!matrix[k + 1] || matrix[k][x].player !== matrix[k + 1][x].player) {
         break;
       }
     }
