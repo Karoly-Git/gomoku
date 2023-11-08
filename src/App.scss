@@ -5,11 +5,18 @@
 }
 
 body {
-  background-color: black;
+  background-color: rgb(80, 50, 40);
 }
 
 .App {
   display: flex;
+  flex-direction: column;
+
+  .who-won {
+    background-color: red;
+    display: flex;
+    justify-content: center;
+  }
 
   .board {
     display: flex;

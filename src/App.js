@@ -7,12 +7,12 @@ function App() {
     2.  Draw a board based on the Matrix.
     3.  Get cell position when clicking on a cell.
     4.  When clicking on a cell, set the 'player' value to the active player.
-    5.  Draw a disk in the clicked cell, 
-        but draw disks in different colors for the players, prevent overwriting the existing disks, 
-        set hover effect when cell is avaliable.
+    5.  Draw a disk in the clicked cell, but draw disks in different colors for the players, prevent overwriting the existing disks, set hover effect when cell is avaliable.
+    6.  Check if there is available cell.
   */
 
   const [activePlayer, setActivePlayer] = useState('A');
+  const [isAvailableCell, setIsAvailableCell] = useState(true);
 
   function makeMatrix(n = 10, m = 10) {
     let matrix = new Array(m).fill(new Array(n).fill(null));
@@ -20,13 +20,14 @@ function App() {
     return matrix;
   };
 
-  const [matrix, setMatrix] = useState(makeMatrix());
+  const [matrix, setMatrix] = useState(makeMatrix(5, 5));
 
   function handleClick(x, y) {
-    updateMatrix(x, y);
+    updateCellState(x, y);
+    checkIsAvaliableCell();
   }
 
-  function updateMatrix(x, y) {
+  function updateCellState(x, y) {
     let newMatrix = [...matrix];
     if (newMatrix[y][x].player === '') {
       newMatrix[y][x].player = activePlayer;
@@ -35,8 +36,24 @@ function App() {
     setMatrix(newMatrix);
   }
 
+  function checkIsAvaliableCell() {
+    let isAvailableCell = false;
+    for (let row of matrix) {
+      for (let cell of row) {
+        if (cell.player === '') {
+          isAvailableCell = true;
+          break;
+        }
+      }
+    }
+    if (!isAvailableCell) {
+      setIsAvailableCell(false);
+    }
+  }
+
   return (
     <div className="App">
+      <div className='who-won'>{!isAvailableCell ? 'No winner' : 'Good luck!'}</div>
       <div className='board'>
         {
           matrix.map((row, rIndex) =>
