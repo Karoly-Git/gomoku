@@ -9,6 +9,7 @@ function App() {
     4.  When clicking on a cell, set the 'player' value to the active player.
     5.  Draw a disk in the clicked cell, but draw disks in different colors for the players, prevent overwriting the existing disks, set hover effect when cell is avaliable.
     6.  Check if there is available cell.
+    7.  Check horizontally if active player won.
   */
 
   const [activePlayer, setActivePlayer] = useState('A');
@@ -25,6 +26,7 @@ function App() {
   function handleClick(x, y) {
     updateCellState(x, y);
     checkIsAvaliableCell();
+    checkHorizontal(x, y)
   }
 
   function updateCellState(x, y) {
@@ -34,6 +36,30 @@ function App() {
       setActivePlayer(newMatrix[y][x].player === 'A' ? 'B' : 'A');
     }
     setMatrix(newMatrix);
+  }
+
+  function checkHorizontal(x, y) {
+    let startX = x;
+    let count = 0;
+
+    for (let i = x; i > 0; i--) {
+      if (matrix[y][i].player === '' || matrix[y][i].player === (activePlayer === 'A' ? 'B' : 'A')) {
+        break;
+      }
+      startX = i;
+    }
+
+    for (let k = startX; k < matrix[0].length; k++) {
+      count++;
+
+      if (count >= 5) {
+        console.log(activePlayer === 'A' ? 'Player-A won!' : 'Player-B won!')
+      }
+
+      if (!matrix[y][k + 1] || matrix[y][k].player !== matrix[y][k + 1].player) {
+        break;
+      }
+    }
   }
 
   function checkIsAvaliableCell() {
@@ -61,7 +87,7 @@ function App() {
               {
                 row.map((cell, cIndex) =>
                   <div className='cell' key={cIndex} onClick={() => handleClick(cIndex, rIndex)} style={matrix[rIndex][cIndex].player ? { backgroundColor: 'unset' } : {}}>
-                    {matrix[rIndex][cIndex].player === '' ? <></> : matrix[rIndex][cIndex].player === 'A' ? <div className='disk disk-A'></div> : <div className='disk disk-B'></div>}
+                    {matrix[rIndex][cIndex].player === '' ? <></> : matrix[rIndex][cIndex].player === 'A' ? <div className='disk disk-A'>{`${cIndex}/${rIndex}`}</div> : <div className='disk disk-B'>{`${cIndex}/${rIndex}`}</div>}
                   </div>
                 )
               }

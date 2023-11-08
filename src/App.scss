@@ -33,14 +33,17 @@ body {
         justify-content: center;
         align-items: center;
         border: 1px solid red;
-        width: 2rem;
-        height: 2rem;
+        width: 3rem;
+        height: 3rem;
 
         &:hover {
           background-color: green;
         }
 
         .disk {
+          display: flex;
+          justify-content: center;
+          align-items: center;
           width: 80%;
           height: 80%;
           border-radius: 50%;
@@ -52,6 +55,7 @@ body {
 
         .disk-B {
           background-color: blue;
+          color: white;
         }
       }
     }
