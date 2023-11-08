@@ -78,7 +78,7 @@ function App() {
     for (let k = startY; k < matrix.length; k++) {
       count++
 
-      if (count >= 3) {
+      if (count >= 5) {
         console.log(activePlayer === 'A' ? 'Player-A won!' : 'Player-B won!')
       }
 
