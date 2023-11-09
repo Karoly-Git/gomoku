@@ -41,11 +41,11 @@ function App() {
   const [inputA, setInputA] = useState('');
   const [inputB, setInputB] = useState('');
 
-  const [isBoxA_Open, setIsBoxA_Open] = useState(false);
-  const [isBoxB_Open, setIsBoxB_Open] = useState(false);
+  const [isOpenBoxA, setIsOpenBoxA] = useState(false);
+  const [isOpenBoxB, setIsOpenBoxB] = useState(false);
 
-  const [playerScoreA, setPlayerScoreA] = useState(0);
-  const [playerScoreB, setPlayerScoreB] = useState(0);
+  const [scoreA, setScoreA] = useState(0);
+  const [scoreB, setScoreB] = useState(0);
 
 
   function makeMatrix(n = 10, m = 10) {
@@ -249,17 +249,17 @@ function App() {
               {playerA}
             </h2>
             <h3>
-              Score: {playerScoreA}
+              Score: {scoreA}
             </h3>
             <div className='icon-box'>
-              <GearIcon onClick={() => setIsBoxA_Open(true)} className='icon' />
+              <GearIcon onClick={() => setIsOpenBoxA(true)} className='icon' />
             </div>
-            <div className='settings-box' style={{ opacity: `${isBoxA_Open ? '1' : '0'}` }}>
+            <div className='settings-box' style={{ opacity: `${isOpenBoxA ? '1' : '0'}` }}>
               <input onChange={(e) => setInputA(e.target.value)} className='name-input' placeholder='Name...'></input>
               <DoneIcon
                 onClick={() => {
                   setPlayerA(inputA === '' ? 'Player - A' : inputA);
-                  setIsBoxA_Open(false)
+                  setIsOpenBoxA(false)
                 }} className='icon'
               />
             </div>
@@ -297,17 +297,17 @@ function App() {
               {playerB}
             </h2>
             <h3>
-              Score: {playerScoreB}
+              Score: {scoreB}
             </h3>
             <div className='icon-box'>
-              <GearIcon onClick={() => setIsBoxB_Open(true)} className='icon' />
+              <GearIcon onClick={() => setIsOpenBoxB(true)} className='icon' />
             </div>
-            <div className='settings-box' style={{ opacity: `${isBoxB_Open ? '1' : '0'}` }}>
+            <div className='settings-box' style={{ opacity: `${isOpenBoxB ? '1' : '0'}` }}>
               <input onChange={(e) => setInputB(e.target.value)} className='name-input' placeholder='Name...'></input>
               <DoneIcon
                 onClick={() => {
                   setPlayerB(inputB === '' ? 'Player - B' : inputB);
-                  setIsBoxB_Open(false)
+                  setIsOpenBoxB(false)
                 }} className='icon'
               />
             </div>
