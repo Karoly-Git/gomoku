@@ -28,7 +28,7 @@ function App() {
     15. Adding name setup option.
   */
 
-  const winCount = 5;
+  const winCount = 3;
 
   const [activePlayer, setActivePlayer] = useState('A');
 
@@ -46,7 +46,6 @@ function App() {
 
   const [scoreA, setScoreA] = useState(0);
   const [scoreB, setScoreB] = useState(0);
-
 
   function makeMatrix(n = 10, m = 10) {
     let matrix = new Array(m).fill(new Array(n).fill(null));
@@ -94,6 +93,7 @@ function App() {
 
       if (count >= winCount) {
         console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
+        activePlayer === 'A' ? setScoreA(scoreA + 1) : setScoreB(scoreB + 1);
         setIsThereWinner(true);
         break;
       }
@@ -121,6 +121,7 @@ function App() {
 
       if (count >= winCount) {
         console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
+        activePlayer === 'A' ? setScoreA(scoreA + 1) : setScoreB(scoreB + 1);
         setIsThereWinner(true);
         break;
       }
@@ -161,6 +162,7 @@ function App() {
 
       if (count >= winCount) {
         console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
+        activePlayer === 'A' ? setScoreA(scoreA + 1) : setScoreB(scoreB + 1);
         setIsThereWinner(true);
         break;
       }
@@ -200,6 +202,7 @@ function App() {
 
       if (count >= winCount) {
         console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
+        activePlayer === 'A' ? setScoreA(scoreA + 1) : setScoreB(scoreB + 1);
         setIsThereWinner(true);
         break;
       }
@@ -226,7 +229,7 @@ function App() {
     }
   }
 
-  function resetBoard() {
+  function startNewGame() {
     setIsThereWinner(false);
     setIsAvailableCell(true);
     setMatrix(makeMatrix());
@@ -236,8 +239,12 @@ function App() {
   return (
     <div className="App">
 
-      <header>
-        <div className='who-won'>{isThereWinner ? activePlayer === 'A' ? `${playerB} won!` : `${playerA} won!` : !isAvailableCell ? 'No winner!' : 'Good luck!'}</div>
+      <header style={isThereWinner || !isAvailableCell ? { backgroundColor: 'yellow' } : { backgroundColor: 'gray' }}>
+        <div
+          className='who-won'
+          style={isThereWinner || !isAvailableCell ? { color: 'black' } : { color: 'white' }}
+        >{isThereWinner ? activePlayer === 'A' ? `${playerB} won!` : `${playerA} won!` : !isAvailableCell ? 'No winner!' : 'Good luck!'}
+        </div>
       </header>
 
       <main>
@@ -317,7 +324,7 @@ function App() {
       </main>
 
       <footer>
-        <button className='reset-btn' onClick={resetBoard}>Reset</button>
+        <button className='reset-btn' onClick={startNewGame}>New Game</button>
       </footer>
 
     </div>

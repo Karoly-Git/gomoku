@@ -11,12 +11,10 @@ body {
 .App header {
   display: flex;
   justify-content: center;
-  background-color: red;
 }
 .App header .who-won {
   padding: 1rem;
   font-size: 1.5rem;
-  color: white;
 }
 .App main {
   display: flex;
