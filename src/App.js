@@ -24,6 +24,7 @@ function App() {
     11. Add a reset button to restart game.
     12. Upon resetting the game, if there is a winner, then the winner starts next game.
     13. Display the winner on the headline.
+    14. Adding player's boxes.
   */
 
   const winCount = 5;
