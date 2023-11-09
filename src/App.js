@@ -13,10 +13,14 @@ function App() {
     8.  Check vertically if active player won.
     9.  Check diagonal-A is active player won.
     10. Check diagonal-B is active player won.
+    11. Add a reset button to restart game.
   */
+
+  const winCount = 3;
 
   const [activePlayer, setActivePlayer] = useState('A');
   const [isAvailableCell, setIsAvailableCell] = useState(true);
+  const [isThereWinner, setIsThereWinner] = useState(false);
 
   function makeMatrix(n = 10, m = 10) {
     let matrix = new Array(m).fill(new Array(n).fill(null));
@@ -51,7 +55,7 @@ function App() {
     let startX = x;
     let count = 0;
 
-    for (let i = x; i > 0; i--) {
+    for (let i = x; i >= 0; i--) {
       if (matrix[y][i].player === '' || matrix[y][i].player === (activePlayer === 'A' ? 'B' : 'A')) {
         break;
       }
@@ -62,8 +66,9 @@ function App() {
     for (let k = startX; k < matrix[0].length; k++) {
       count++;
 
-      if (count >= 5) {
+      if (count >= winCount) {
         console.log(activePlayer === 'A' ? 'Player-A won!' : 'Player-B won!');
+        setIsThereWinner(true);
         break;
       }
 
@@ -88,8 +93,9 @@ function App() {
     for (let k = startY; k < matrix.length; k++) {
       count++
 
-      if (count >= 5) {
+      if (count >= winCount) {
         console.log(activePlayer === 'A' ? 'Player-A won!' : 'Player-B won!');
+        setIsThereWinner(true);
         break;
       }
 
@@ -127,8 +133,9 @@ function App() {
 
       count++;
 
-      if (count >= 5) {
+      if (count >= winCount) {
         console.log(activePlayer === 'A' ? 'Player-A won!' : 'Player-B won!');
+        setIsThereWinner(true);
         break;
       }
 
@@ -146,33 +153,35 @@ function App() {
     let startX;
     let startY;
 
-    while (indexX <= matrix[0].length - 1 && indexY >= 0) {
+    while (indexX < matrix[0].length && indexY >= 0) {
       if (matrix[indexY][indexX].player === '' || matrix[indexY][indexX].player === (activePlayer === 'A' ? 'B' : 'A')) {
         break;
       }
+
       startX = indexX;
       startY = indexY;
+
       indexX++;
       indexY--;
     }
 
-    while (startX > 0 && startY < matrix.length) {
+    while (startX >= 0 && startY < matrix.length) {
+      //console.log(startX, startY);
       if (matrix[startY][startX].player === '' || matrix[startY][startX].player === (activePlayer === 'A' ? 'B' : 'A')) {
         break;
       }
 
       count++;
 
-      if (count >= 5) {
+      if (count >= winCount) {
         console.log(activePlayer === 'A' ? 'Player-A won!' : 'Player-B won!');
+        setIsThereWinner(true);
         break;
       }
 
       startX--;
       startY++;
     }
-
-    console.log(count);
   }
 
   function checkIsAvaliableCell() {
@@ -192,6 +201,12 @@ function App() {
     }
   }
 
+  function resetBoard() {
+    setIsThereWinner(false);
+    setIsAvailableCell(true);
+    setMatrix(makeMatrix());
+  }
+
   return (
     <div className="App">
       <div className='who-won'>{!isAvailableCell ? 'No winner' : 'Good luck!'}</div>
@@ -201,7 +216,15 @@ function App() {
             <div className='row' key={rIndex}>
               {
                 row.map((cell, cIndex) =>
-                  <div className='cell' key={cIndex} onClick={() => handleClick(cIndex, rIndex)} style={matrix[rIndex][cIndex].player ? { backgroundColor: 'unset' } : {}}>
+                  <div
+                    className='cell'
+                    key={cIndex}
+                    onClick={() => handleClick(cIndex, rIndex)}
+                    style={{
+                      backgroundColor: matrix[rIndex][cIndex].player ? 'unset' : '',
+                      pointerEvents: isThereWinner ? 'none' : ''
+                    }}
+                  >
                     {matrix[rIndex][cIndex].player === '' ? <></> : matrix[rIndex][cIndex].player === 'A' ? <div className='disk disk-A'>{`${cIndex}/${rIndex}`}</div> : <div className='disk disk-B'>{`${cIndex}/${rIndex}`}</div>}
                   </div>
                 )
@@ -210,6 +233,7 @@ function App() {
           )
         }
       </div>
+      <button className='reset-btn' onClick={resetBoard}>Reset</button>
     </div>
   );
 }

@@ -11,18 +11,22 @@ body {
 .App {
   display: flex;
   flex-direction: column;
+  align-items: center;
 }
 .App .who-won {
   background-color: red;
   display: flex;
   justify-content: center;
+  width: 100%;
+  padding: 1rem;
+  font-size: 1.5rem;
 }
 .App .board {
   display: flex;
   flex-direction: column;
   border: 1px solid gray;
   padding: 3px;
-  margin: 2rem auto 0;
+  margin-top: 2rem;
 }
 .App .board .row {
   display: flex;
@@ -52,4 +56,16 @@ body {
 .App .board .row .cell .disk-B {
   background-color: blue;
   color: white;
+}
+.App .reset-btn {
+  background-color: red;
+  font-size: 1.5rem;
+  box-shadow: none;
+  border: none;
+  margin-top: 2rem;
+  padding: 1rem 2rem;
+  cursor: pointer;
+}
+.App .reset-btn:hover {
+  background-color: yellow;
 }/*# sourceMappingURL=App.css.map */
