@@ -17,6 +17,15 @@ body {
 }
 
 .App {
+  .cursor {
+    //width: 10px;
+    //height: 10px;
+    //border-radius: 50%;
+    //border: 2px solid white;
+    position: absolute;
+    color: rgba(255, 255, 255, 0.3);
+  }
+
   header {
     display: flex;
     justify-content: center;

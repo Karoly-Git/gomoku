@@ -27,19 +27,19 @@ function App() {
     13. Display the winner on the headline.
     14. Adding player's boxes.
     15. Adding name setup option.
+    16. Adding custom cursor.
   */
 
-  const winCount = 3;
+  const winCount = 5;
 
   const [activePlayer, setActivePlayer] = useState('A');
 
   const [isAvailableCell, setIsAvailableCell] = useState(true);
   const [isThereWinner, setIsThereWinner] = useState(false);
+  const [isCursor, setIsCursor] = useState(false);
 
-  //const [playerA, setPlayerA] = useState('Player - A');
-  //const [playerB, setPlayerB] = useState('Player - B');
-  const [playerA, setPlayerA] = useState('Joanna');
-  const [playerB, setPlayerB] = useState('Karoly');
+  const [playerA, setPlayerA] = useState('Player - A');
+  const [playerB, setPlayerB] = useState('Player - B');
 
   const [inputA, setInputA] = useState('');
   const [inputB, setInputB] = useState('');
@@ -95,7 +95,7 @@ function App() {
       count++;
 
       if (count >= winCount) {
-        console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
+        //console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
         activePlayer === 'A' ? setScoreA(scoreA + 1) : setScoreB(scoreB + 1);
         setIsThereWinner(true);
         break;
@@ -123,7 +123,7 @@ function App() {
       count++
 
       if (count >= winCount) {
-        console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
+        //console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
         activePlayer === 'A' ? setScoreA(scoreA + 1) : setScoreB(scoreB + 1);
         setIsThereWinner(true);
         break;
@@ -164,7 +164,7 @@ function App() {
       count++;
 
       if (count >= winCount) {
-        console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
+        //console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
         activePlayer === 'A' ? setScoreA(scoreA + 1) : setScoreB(scoreB + 1);
         setIsThereWinner(true);
         break;
@@ -204,7 +204,7 @@ function App() {
       count++;
 
       if (count >= winCount) {
-        console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
+        //console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
         activePlayer === 'A' ? setScoreA(scoreA + 1) : setScoreB(scoreB + 1);
         setIsThereWinner(true);
         break;
@@ -239,8 +239,21 @@ function App() {
     setActivePlayer(activePlayer === 'A' ? 'B' : 'A'); // The winner starts next game.
   }
 
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+
+  function handleMouseMove(e) {
+    setCursorPosition({ x: e.clientX, y: e.clientY });
+    //console.log({ x: e.clientX, y: e.clientY })
+  }
+
   return (
-    <div className="App">
+    <div className="App" onMouseMove={handleMouseMove}>
+
+      {isCursor && isAvailableCell && !isThereWinner &&
+        <div className='cursor' style={{ top: `${cursorPosition.y - 20}px`, left: `${cursorPosition.x + 20}px` }}>
+          {activePlayer === 'A' ? playerA : playerB}
+        </div>
+      }
 
       <header style={isThereWinner || !isAvailableCell ? { backgroundColor: 'yellow' } : { backgroundColor: 'gray' }}>
         <div
@@ -276,7 +289,7 @@ function App() {
           </div>
         </div>
 
-        <div className='board'>
+        <div className='board' onMouseEnter={() => setIsCursor(true)} onMouseLeave={() => setIsCursor(false)}>
           {
             matrix.map((row, rIndex) =>
               <div className='row' key={rIndex}>
@@ -330,7 +343,7 @@ function App() {
         <button className='reset-btn' onClick={startNewGame}>New Game</button>
       </footer>
 
-    </div>
+    </div >
   );
 }
 

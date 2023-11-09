@@ -8,6 +8,10 @@ body {
   background-color: black;
 }
 
+.App .cursor {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.3);
+}
 .App header {
   display: flex;
   justify-content: center;
