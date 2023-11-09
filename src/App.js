@@ -14,9 +14,10 @@ function App() {
     9.  Check diagonal-A is active player won.
     10. Check diagonal-B is active player won.
     11. Add a reset button to restart game.
+    12. Upon resetting the game, if there is a winner, then the winner starts next game. 
   */
 
-  const winCount = 3;
+  const winCount = 5;
 
   const [activePlayer, setActivePlayer] = useState('A');
   const [isAvailableCell, setIsAvailableCell] = useState(true);
@@ -204,6 +205,7 @@ function App() {
     setIsThereWinner(false);
     setIsAvailableCell(true);
     setMatrix(makeMatrix());
+    setActivePlayer(activePlayer === 'A' ? 'B' : 'A'); // The winner starts next game.
   }
 
   return (
