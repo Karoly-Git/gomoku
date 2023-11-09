@@ -14,7 +14,8 @@ function App() {
     9.  Check diagonal-A is active player won.
     10. Check diagonal-B is active player won.
     11. Add a reset button to restart game.
-    12. Upon resetting the game, if there is a winner, then the winner starts next game. 
+    12. Upon resetting the game, if there is a winner, then the winner starts next game.
+    13. Display the winner on the headline.
   */
 
   const winCount = 5;
@@ -22,6 +23,9 @@ function App() {
   const [activePlayer, setActivePlayer] = useState('A');
   const [isAvailableCell, setIsAvailableCell] = useState(true);
   const [isThereWinner, setIsThereWinner] = useState(false);
+
+  const [playerA, setPlayerA] = useState('Player-A');
+  const [playerB, setPlayerB] = useState('Player-B');
 
   function makeMatrix(n = 10, m = 10) {
     let matrix = new Array(m).fill(new Array(n).fill(null));
@@ -68,7 +72,7 @@ function App() {
       count++;
 
       if (count >= winCount) {
-        console.log(activePlayer === 'A' ? 'Player-A won!' : 'Player-B won!');
+        console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
         setIsThereWinner(true);
         break;
       }
@@ -95,7 +99,7 @@ function App() {
       count++
 
       if (count >= winCount) {
-        console.log(activePlayer === 'A' ? 'Player-A won!' : 'Player-B won!');
+        console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
         setIsThereWinner(true);
         break;
       }
@@ -135,7 +139,7 @@ function App() {
       count++;
 
       if (count >= winCount) {
-        console.log(activePlayer === 'A' ? 'Player-A won!' : 'Player-B won!');
+        console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
         setIsThereWinner(true);
         break;
       }
@@ -174,7 +178,7 @@ function App() {
       count++;
 
       if (count >= winCount) {
-        console.log(activePlayer === 'A' ? 'Player-A won!' : 'Player-B won!');
+        console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
         setIsThereWinner(true);
         break;
       }
@@ -210,7 +214,7 @@ function App() {
 
   return (
     <div className="App">
-      <div className='who-won'>{!isAvailableCell ? 'No winner' : 'Good luck!'}</div>
+      <div className='who-won'>{isThereWinner ? activePlayer === 'A' ? `${playerB} won!` : `${playerA} won!` : !isAvailableCell ? 'No winner!' : 'Good luck!'}</div>
       <div className='board'>
         {
           matrix.map((row, rIndex) =>
@@ -226,7 +230,7 @@ function App() {
                       pointerEvents: isThereWinner ? 'none' : ''
                     }}
                   >
-                    {matrix[rIndex][cIndex].player === '' ? <></> : matrix[rIndex][cIndex].player === 'A' ? <div className='disk disk-A'>{`${cIndex}/${rIndex}`}</div> : <div className='disk disk-B'>{`${cIndex}/${rIndex}`}</div>}
+                    {matrix[rIndex][cIndex].player === '' ? <></> : matrix[rIndex][cIndex].player === 'A' ? <div className='disk disk-A'>{/*`${cIndex}/${rIndex}`*/}</div> : <div className='disk disk-B'>{/*`${cIndex}/${rIndex}`*/}</div>}
                   </div>
                 )
               }
