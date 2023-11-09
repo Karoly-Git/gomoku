@@ -61,19 +61,21 @@ body {
             width: 2rem;
             height: 2rem;
             border-radius: 50%;
+
+            .icon {
+              font-size: 2rem;
+            }
           }
 
           .disk-A {
-            border: 2px solid white;
-            //background-color: rgba(255, 255, 255, 0.8);
+            .icon {
+              color: white;
+            }
           }
 
           .disk-B {
-            //background-color: rgba(255, 0, 0, 0.8);
-
             .icon {
               color: red;
-              font-size: 2rem;
             }
           }
         }

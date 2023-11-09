@@ -50,12 +50,14 @@ body {
   height: 2rem;
   border-radius: 50%;
 }
-.App main .board .row .cell .disk-A {
-  border: 2px solid white;
+.App main .board .row .cell .disk .icon {
+  font-size: 2rem;
+}
+.App main .board .row .cell .disk-A .icon {
+  color: white;
 }
 .App main .board .row .cell .disk-B .icon {
   color: red;
-  font-size: 2rem;
 }
 .App main .player-house {
   display: flex;

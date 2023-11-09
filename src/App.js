@@ -8,6 +8,7 @@ import './App.css';
 import { BsFillGearFill as GearIcon } from 'react-icons/bs';
 import { MdDone as DoneIcon } from 'react-icons/md';
 import { AiOutlineClose as XIcon } from 'react-icons/ai';
+import { BsCircle as OIcon } from 'react-icons/bs';
 
 function App() {
   /*
@@ -35,8 +36,10 @@ function App() {
   const [isAvailableCell, setIsAvailableCell] = useState(true);
   const [isThereWinner, setIsThereWinner] = useState(false);
 
-  const [playerA, setPlayerA] = useState('Player - A');
-  const [playerB, setPlayerB] = useState('Player - B');
+  //const [playerA, setPlayerA] = useState('Player - A');
+  //const [playerB, setPlayerB] = useState('Player - B');
+  const [playerA, setPlayerA] = useState('Joanna');
+  const [playerB, setPlayerB] = useState('Karoly');
 
   const [inputA, setInputA] = useState('');
   const [inputB, setInputB] = useState('');
@@ -288,7 +291,7 @@ function App() {
                         pointerEvents: isThereWinner ? 'none' : ''
                       }}
                     >
-                      {matrix[rIndex][cIndex].player === '' ? <></> : matrix[rIndex][cIndex].player === 'A' ? <div className='disk disk-A'>{/*`${cIndex}/${rIndex}`*/}</div> : <div className='disk disk-B'><XIcon className='icon' />{/*`${cIndex}/${rIndex}`*/}</div>}
+                      {matrix[rIndex][cIndex].player === '' ? <></> : matrix[rIndex][cIndex].player === 'A' ? <div className='disk disk-A'><OIcon className='icon' />{/*`${cIndex}/${rIndex}`*/}</div> : <div className='disk disk-B'><XIcon className='icon' />{/*`${cIndex}/${rIndex}`*/}</div>}
                     </div>
                   )
                 }
