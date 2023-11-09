@@ -17,6 +17,8 @@ body {
 }
 
 .App {
+  min-height: 100vh;
+
   .cursor {
     //width: 10px;
     //height: 10px;
@@ -176,7 +178,7 @@ body {
 
   footer {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
 
     .reset-btn {
       font-size: 1.5rem;
@@ -185,6 +187,7 @@ body {
       padding: 1rem 2rem;
       cursor: pointer;
       background-color: cornsilk;
+      margin: 0 auto;
 
       &:hover {
         background-color: yellow;

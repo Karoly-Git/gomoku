@@ -1,5 +1,8 @@
 // React Imports
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
+
+//Component Impors
+import Developer from './components/Developer';
 
 //Style Imports
 import './App.css';
@@ -341,8 +344,8 @@ function App() {
 
       <footer>
         <button className='reset-btn' onClick={startNewGame}>New Game</button>
+        {!false && <Developer />}
       </footer>
-
     </div >
   );
 }
