@@ -47,6 +47,9 @@ function App() {
   const [inputA, setInputA] = useState('');
   const [inputB, setInputB] = useState('');
 
+  const refA = useRef();
+  const refB = useRef();
+
   const [isOpenBoxA, setIsOpenBoxA] = useState(false);
   const [isOpenBoxB, setIsOpenBoxB] = useState(false);
 
@@ -278,10 +281,14 @@ function App() {
               Score: {scoreA}
             </h3>
             <div className='icon-box'>
-              <GearIcon onClick={() => setIsOpenBoxA(true)} className='icon' />
+              <GearIcon onClick={() => {
+                setIsOpenBoxA(true);
+                refA.current.focus()
+              }}
+                className='icon' />
             </div>
             <div className='settings-box' style={{ opacity: `${isOpenBoxA ? '1' : '0'}` }}>
-              <input onChange={(e) => setInputA(e.target.value)} className='name-input' placeholder='Name...'></input>
+              <input ref={refA} onChange={(e) => setInputA(e.target.value)} className='name-input' placeholder='Name...'></input>
               <DoneIcon
                 onClick={() => {
                   setPlayerA(inputA === '' ? 'Player - A' : inputA);
@@ -326,10 +333,14 @@ function App() {
               Score: {scoreB}
             </h3>
             <div className='icon-box'>
-              <GearIcon onClick={() => setIsOpenBoxB(true)} className='icon' />
+              <GearIcon onClick={() => {
+                setIsOpenBoxB(true);
+                refB.current.focus()
+              }}
+                className='icon' />
             </div>
             <div className='settings-box' style={{ opacity: `${isOpenBoxB ? '1' : '0'}` }}>
-              <input onChange={(e) => setInputB(e.target.value)} className='name-input' placeholder='Name...'></input>
+              <input ref={refB} onChange={(e) => setInputB(e.target.value)} className='name-input' placeholder='Name...'></input>
               <DoneIcon
                 onClick={() => {
                   setPlayerB(inputB === '' ? 'Player - B' : inputB);
