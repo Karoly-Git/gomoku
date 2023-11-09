@@ -1,5 +1,13 @@
+// React Imports
 import React, { useState } from 'react';
+
+//Style Imports
 import './App.css';
+
+// Icon Imports
+import { BsFillGearFill as GearIcon } from 'react-icons/bs';
+import { MdDone as DoneIcon } from 'react-icons/md';
+import { AiOutlineClose as XIcon } from 'react-icons/ai';
 
 function App() {
   /*
@@ -21,11 +29,16 @@ function App() {
   const winCount = 5;
 
   const [activePlayer, setActivePlayer] = useState('A');
+
   const [isAvailableCell, setIsAvailableCell] = useState(true);
   const [isThereWinner, setIsThereWinner] = useState(false);
 
-  const [playerA, setPlayerA] = useState('Player-A');
-  const [playerB, setPlayerB] = useState('Player-B');
+  const [playerA, setPlayerA] = useState('Player - A');
+  const [playerB, setPlayerB] = useState('Player - B');
+
+  const [playerScoreA, setPlayerScoreA] = useState(0);
+  const [playerScoreB, setPlayerScoreB] = useState(0);
+
 
   function makeMatrix(n = 10, m = 10) {
     let matrix = new Array(m).fill(new Array(n).fill(null));
@@ -214,31 +227,81 @@ function App() {
 
   return (
     <div className="App">
-      <div className='who-won'>{isThereWinner ? activePlayer === 'A' ? `${playerB} won!` : `${playerA} won!` : !isAvailableCell ? 'No winner!' : 'Good luck!'}</div>
-      <div className='board'>
-        {
-          matrix.map((row, rIndex) =>
-            <div className='row' key={rIndex}>
-              {
-                row.map((cell, cIndex) =>
-                  <div
-                    className='cell'
-                    key={cIndex}
-                    onClick={() => handleClick(cIndex, rIndex)}
-                    style={{
-                      backgroundColor: matrix[rIndex][cIndex].player ? 'unset' : '',
-                      pointerEvents: isThereWinner ? 'none' : ''
-                    }}
-                  >
-                    {matrix[rIndex][cIndex].player === '' ? <></> : matrix[rIndex][cIndex].player === 'A' ? <div className='disk disk-A'>{/*`${cIndex}/${rIndex}`*/}</div> : <div className='disk disk-B'>{/*`${cIndex}/${rIndex}`*/}</div>}
-                  </div>
-                )
-              }
+
+      <header>
+        <div className='who-won'>{isThereWinner ? activePlayer === 'A' ? `${playerB} won!` : `${playerA} won!` : !isAvailableCell ? 'No winner!' : 'Good luck!'}</div>
+      </header>
+
+      <main>
+
+        <div className='player-house'>
+          <div className='frame'>
+            <h2>
+              <span className='player-color-sign'></span>
+              {playerA}
+            </h2>
+            <h3>
+              Score: {playerScoreA}
+            </h3>
+            <div className='icon-box'>
+              <GearIcon className='icon' />
             </div>
-          )
-        }
-      </div>
-      <button className='reset-btn' onClick={resetBoard}>Reset</button>
+            <div className='settings-box'>
+              <input className='name-input' placeholder='Name...'></input>
+              <DoneIcon className='icon' />
+            </div>
+          </div>
+        </div>
+
+        <div className='board'>
+          {
+            matrix.map((row, rIndex) =>
+              <div className='row' key={rIndex}>
+                {
+                  row.map((cell, cIndex) =>
+                    <div
+                      className='cell'
+                      key={cIndex}
+                      onClick={() => handleClick(cIndex, rIndex)}
+                      style={{
+                        backgroundColor: matrix[rIndex][cIndex].player ? 'unset' : '',
+                        pointerEvents: isThereWinner ? 'none' : ''
+                      }}
+                    >
+                      {matrix[rIndex][cIndex].player === '' ? <></> : matrix[rIndex][cIndex].player === 'A' ? <div className='disk disk-A'>{/*`${cIndex}/${rIndex}`*/}</div> : <div className='disk disk-B'><XIcon className='icon' />{/*`${cIndex}/${rIndex}`*/}</div>}
+                    </div>
+                  )
+                }
+              </div>
+            )
+          }
+        </div>
+
+        <div className='player-house'>
+          <div className='frame'>
+            <h2>
+              <span className='player-color-sign'></span>
+              {playerB}
+            </h2>
+            <h3>
+              Score: {playerScoreB}
+            </h3>
+            <div className='icon-box'>
+              <GearIcon className='icon' />
+            </div>
+            <div className='settings-box'>
+              <input className='name-input' placeholder='Name...'></input>
+              <DoneIcon className='icon' />
+            </div>
+          </div>
+        </div>
+
+      </main>
+
+      <footer>
+        <button className='reset-btn' onClick={resetBoard}>Reset</button>
+      </footer>
+
     </div>
   );
 }
