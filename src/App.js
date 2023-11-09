@@ -166,7 +166,6 @@ function App() {
     }
 
     while (startX >= 0 && startY < matrix.length) {
-      //console.log(startX, startY);
       if (matrix[startY][startX].player === '' || matrix[startY][startX].player === (activePlayer === 'A' ? 'B' : 'A')) {
         break;
       }
