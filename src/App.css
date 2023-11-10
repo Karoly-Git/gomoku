@@ -79,6 +79,7 @@ body {
   align-items: center;
   padding: 3px;
   min-width: 180px;
+  max-width: 180px;
   border: 1px solid white;
 }
 .App main .player-house .frame {
@@ -87,31 +88,29 @@ body {
   background-color: cornsilk;
 }
 .App main .player-house .frame h2 {
+  display: flex;
+  align-items: center;
   margin: 5px;
   font-size: 18px;
   color: #c0392b;
   font-family: "Helvetica", sans-serif;
+  min-width: 100%;
+  text-transform: capitalize;
+}
+.App main .player-house .frame h2 .icon {
+  background-color: gray;
+  color: white;
+  border-radius: 50%;
+  padding: 3px;
+  font-size: 2rem;
+  margin-left: auto;
+  margin-right: 0;
 }
 .App main .player-house .frame h3 {
   width: 100%;
   margin: 5px;
-  font-size: 16px;
-  color: #c0392b;
-}
-.App main .player-house .frame .icon-box {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-}
-.App main .player-house .frame .icon-box .icon {
   font-size: 1.5rem;
-  color: #e74c3c;
-  margin-left: 1rem;
-  cursor: pointer;
-  transition: color 0.3s ease;
-}
-.App main .player-house .frame .icon-box .icon:hover {
-  color: #d62c1a;
+  color: #c0392b;
 }
 .App main .player-house .frame .settings-box {
   display: flex;
@@ -119,7 +118,6 @@ body {
   align-items: center;
   margin-top: 1rem;
   width: 100%;
-  transition: opacity 350ms ease-in-out;
 }
 .App main .player-house .frame .settings-box .name-input {
   padding: 0.5rem;
@@ -127,20 +125,24 @@ body {
   border: 1px solid skyblue;
   color: #2c3e50;
   background-color: rgb(250, 243, 215);
-  transition: border-color 0.3s ease;
+  transition: all 350ms ease-in-out;
 }
 .App main .player-house .frame .settings-box .name-input:focus {
   outline: none;
   border-color: #d62c1a;
 }
 .App main .player-house .frame .settings-box .icon {
-  font-size: 1.8rem;
-  color: #3498db;
+  font-size: 1.5rem;
+  color: #e74c3c;
   cursor: pointer;
-  transition: color 0.3s ease;
+  transition: opacity 350ms ease-in-out;
+  min-width: 1.5rem;
 }
 .App main .player-house .frame .settings-box .icon:hover {
-  color: #217dbb;
+  color: #d62c1a;
+}
+.App main .player-house .frame .settings-box .done-icon {
+  margin-left: -45px;
 }
 .App footer {
   display: flex;

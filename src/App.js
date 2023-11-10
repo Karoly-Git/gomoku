@@ -97,26 +97,28 @@ function App() {
         <div className='player-house'>
           <div className='frame'>
             <h2>
-              <span className='player-color-sign'></span>
               {playerA}
+              <OIcon className='icon' />
             </h2>
             <h3>
               Score: {scoreA}
             </h3>
-            <div className='icon-box'>
-              <GearIcon onClick={() => {
-                setIsOpenBoxA(true);
-                refA.current.focus()
-              }}
-                className='icon' />
-            </div>
-            <div className='settings-box' style={{ opacity: `${isOpenBoxA ? '1' : '0'}` }}>
-              <input ref={refA} onChange={(e) => setInputA(e.target.value)} className='name-input' placeholder='Name...'></input>
+            <div className='settings-box'>
+              <input ref={refA} onChange={(e) => setPlayerA(e.target.value)} className='name-input' placeholder='Name...' style={{ opacity: `${isOpenBoxA ? '1' : '0'}` }}></input>
+              <GearIcon
+                onClick={() => {
+                  setIsOpenBoxA(!isOpenBoxA);
+                  refA.current.focus()
+                }}
+                className='icon gear-icon'
+                style={{ opacity: `${isOpenBoxA ? '0' : '1'}` }}
+              />
               <DoneIcon
                 onClick={() => {
-                  setPlayerA(inputA === '' ? 'Player - A' : inputA);
-                  setIsOpenBoxA(false)
-                }} className='icon'
+                  setIsOpenBoxA(!isOpenBoxA)
+                }}
+                className='icon done-icon'
+                style={{ opacity: `${isOpenBoxA ? '1' : '0'}` }}
               />
             </div>
           </div>
@@ -133,7 +135,6 @@ function App() {
                       key={cIndex}
                       onClick={() => handleCellClick(cIndex, rIndex)}
                       style={{
-                        //backgroundColor: matrix[rIndex][cIndex].player ? 'unset' : '',
                         backgroundColor: matrix[rIndex][cIndex].player && !isWinner ? 'unset' : matrix[rIndex][cIndex].winCell === true ? winningBackground : '',
                         pointerEvents: isWinner ? 'none' : ''
                       }}
@@ -150,26 +151,28 @@ function App() {
         <div className='player-house'>
           <div className='frame'>
             <h2>
-              <span className='player-color-sign'></span>
               {playerB}
+              <XIcon className='icon' />
             </h2>
             <h3>
               Score: {scoreB}
             </h3>
-            <div className='icon-box'>
-              <GearIcon onClick={() => {
-                setIsOpenBoxB(true);
-                refB.current.focus()
-              }}
-                className='icon' />
-            </div>
-            <div className='settings-box' style={{ opacity: `${isOpenBoxB ? '1' : '0'}` }}>
-              <input ref={refB} onChange={(e) => setInputB(e.target.value)} className='name-input' placeholder='Name...'></input>
+            <div className='settings-box'>
+              <input ref={refB} onChange={(e) => setPlayerB(e.target.value)} className='name-input' placeholder='Name...' style={{ opacity: `${isOpenBoxB ? '1' : '0'}` }}></input>
+              <GearIcon
+                onClick={() => {
+                  setIsOpenBoxB(!isOpenBoxB);
+                  refB.current.focus()
+                }}
+                className='icon gear-icon'
+                style={{ opacity: `${isOpenBoxB ? '0' : '1'}` }}
+              />
               <DoneIcon
                 onClick={() => {
-                  setPlayerB(inputB === '' ? 'Player - B' : inputB);
-                  setIsOpenBoxB(false)
-                }} className='icon'
+                  setIsOpenBoxB(!isOpenBoxB)
+                }}
+                className='icon done-icon'
+                style={{ opacity: `${isOpenBoxB ? '1' : '0'}` }}
               />
             </div>
           </div>
