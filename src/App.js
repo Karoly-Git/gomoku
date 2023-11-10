@@ -14,7 +14,9 @@ import { AiOutlineClose as XIcon } from 'react-icons/ai';
 import { BsCircle as OIcon } from 'react-icons/bs';
 
 // Function Imports
-import { checkHorizontal, checkVertical, checkDiagonalA, checkDiagonalB, updateCellState, checkIsAvaliableCell, startNewGame } from './js/gameLogic'
+import { checkHorizontal, checkVertical, checkDiagonalA, checkDiagonalB } from './js/winConditionChecks'
+import { updateCellState, checkIsAvaliableCell, startNewGame } from './js/boardStateUpdates'
+import { initializeMatrix } from './js/initializeMatrix'
 
 function App() {
   /*
@@ -36,39 +38,41 @@ function App() {
     16. Adding custom cursor.
   */
 
-  const winCount = 5;
+  // Constants
+  const winCount = 3;
 
+  // State Hooks //
+  // Game State Hooks
+  const [matrix, setMatrix] = useState(initializeMatrix());
+
+  // Cursor State Hooks
   const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
-
-  const [activePlayer, setActivePlayer] = useState('A');
-
-  const [isAvailableCell, setIsAvailableCell] = useState(true);
-  const [isWinner, setIsWinner] = useState(false);
   const [isCursor, setIsCursor] = useState(false);
 
+  // Player State Hooks
+  const [activePlayer, setActivePlayer] = useState('A');
+  const [isAvailableCell, setIsAvailableCell] = useState(true);
+  const [isWinner, setIsWinner] = useState(false);
+
+  // Player Settings State Hooks
   const [playerA, setPlayerA] = useState('Player - A');
   const [playerB, setPlayerB] = useState('Player - B');
-
   const [inputA, setInputA] = useState('');
   const [inputB, setInputB] = useState('');
 
+  // Refs
   const refA = useRef();
   const refB = useRef();
 
+  // Settings State Hooks
   const [isOpenBoxA, setIsOpenBoxA] = useState(false);
   const [isOpenBoxB, setIsOpenBoxB] = useState(false);
 
+  // Score State Hooks
   const [scoreA, setScoreA] = useState(0);
   const [scoreB, setScoreB] = useState(0);
 
-  function initializeMatrix(n = 10, m = 10) {
-    let matrix = new Array(m).fill(new Array(n).fill(null));
-    matrix = matrix.map((y, yIndex) => y.map((x, xIndex) => x = { x: xIndex, y: yIndex, player: '' }))
-    return matrix;
-  };
-
-  const [matrix, setMatrix] = useState(initializeMatrix());
-
+  // Event Handlers
   function handleCellClick(x, y) {
     updateCellState(x, y, matrix, setMatrix, activePlayer, setActivePlayer);
     checkIsAvaliableCell(matrix, setIsAvailableCell);
@@ -190,7 +194,7 @@ function App() {
 
       <footer>
         <button className='reset-btn' onClick={handleResetClick}>New Game</button>
-        {!false && <Developer />}
+        <Developer />
       </footer>
     </div >
   );
