@@ -20,9 +20,9 @@ import PlayerHouse from './components/PlayerHouse';
 function App() {
 
   // Constants
-  const winCount = 5;
-  const showIcons = true;
-  const winningBackground = 'rgb(38, 70, 38)';
+  const winCount = 5; // Number of consecutive cells required to win
+  const showIcons = true; // Toggle to show/hide player icons
+  const winningBackground = 'rgb(38, 70, 38)'; // Background color for winning cells
 
   // State Hooks //
   // Game State Hooks
@@ -92,6 +92,7 @@ function App() {
   };
 
   // Event Handlers
+  // Handle cell click event
   function handleCellClick(x, y) {
     updateCellState(x, y, ...cellStateProps);
     checkIsAvaliableCell(...checkIsAvaliableCelProps);
@@ -101,10 +102,12 @@ function App() {
     checkDiagonalB(x, y, ...winnerCheckProps);
   }
 
+  // Handle reset button click event
   function handleResetClick() {
     startNewGame(...startNewGameProps)
   }
 
+  // Handle mouse move event
   function handleMouseMove(e) {
     setCursorPosition({ x: e.clientX, y: e.clientY });
   }
@@ -113,7 +116,11 @@ function App() {
     <div className="App" onMouseMove={handleMouseMove}>
 
       {isCursor && isAvailableCell && !isWinner &&
-        <div className='cursor' style={{ top: `${cursorPosition.y - 20}px`, left: `${cursorPosition.x + 20}px` }}>
+        <div
+          className='cursor'
+          style={{
+            top: `${cursorPosition.y - 20}px`, left: `${cursorPosition.x + 20}px`
+          }}>
           {activePlayer === 'A' ? playerA : playerB}
         </div>
       }
@@ -122,7 +129,8 @@ function App() {
         <div
           className='who-won'
           style={isWinner || !isAvailableCell ? { color: 'black' } : { color: 'white' }}
-        >{isWinner ? activePlayer === 'A' ? `${playerB} won!` : `${playerA} won!` : !isAvailableCell ? 'No winner!' : 'Good luck!'}
+        >
+          {isWinner ? activePlayer === 'A' ? `${playerB} won!` : `${playerA} won!` : !isAvailableCell ? 'No winner!' : 'Good luck!'}
         </div>
       </header>
 
@@ -131,27 +139,22 @@ function App() {
         <PlayerHouse {...playerAProps} />
 
         <div className='board' onMouseEnter={() => setIsCursor(true)} onMouseLeave={() => setIsCursor(false)}>
-          {
-            matrix.map((row, rIndex) =>
-              <div className='row' key={rIndex}>
-                {
-                  row.map((cell, cIndex) =>
-                    <div
-                      className='cell'
-                      key={cIndex}
-                      onClick={() => handleCellClick(cIndex, rIndex)}
-                      style={{
-                        backgroundColor: matrix[rIndex][cIndex].player && !isWinner ? 'unset' : matrix[rIndex][cIndex].winCell === true ? winningBackground : '',
-                        pointerEvents: isWinner ? 'none' : ''
-                      }}
-                    >
-                      {matrix[rIndex][cIndex].player === '' ? <></> : matrix[rIndex][cIndex].player === 'A' ? <div className='disk disk-A'>{showIcons && <OIcon className='icon' />}{!showIcons && `${cIndex}/${rIndex}`}</div> : <div className='disk disk-B'>{showIcons && <XIcon className='icon' />}{!showIcons && `${cIndex}/${rIndex}`}</div>}
-                    </div>
-                  )
-                }
-              </div>
-            )
-          }
+          {matrix.map((row, rIndex) =>
+            <div className='row' key={rIndex}>
+              {row.map((cell, cIndex) =>
+                <div
+                  className='cell'
+                  key={cIndex}
+                  onClick={() => handleCellClick(cIndex, rIndex)}
+                  style={{
+                    backgroundColor: matrix[rIndex][cIndex].player && !isWinner ? 'unset' : matrix[rIndex][cIndex].winCell === true ? winningBackground : '',
+                    pointerEvents: isWinner ? 'none' : ''
+                  }}>
+                  {matrix[rIndex][cIndex].player === '' ? null : matrix[rIndex][cIndex].player === 'A' ? <div className='disk disk-A'>{showIcons && <OIcon className='icon' />}{!showIcons && `${cIndex}/${rIndex}`}</div> : <div className='disk disk-B'>{showIcons && <XIcon className='icon' />}{!showIcons && `${cIndex}/${rIndex}`}</div>}
+                </div>
+              )}
+            </div>
+          )}
         </div>
 
         <PlayerHouse {...playerBProps} />
