@@ -1,11 +1,17 @@
 // React Imports
-import React from 'react'
+import React, { useEffect } from 'react'
 
 // Icon Imports
 import { BsFillGearFill as GearIcon } from 'react-icons/bs';
 import { MdDone as DoneIcon } from 'react-icons/md';
 
 export default function PlayerHouse(props) {
+    useEffect(() => {
+        if (props.isOpenBox) {
+            props.focusRef.current.focus();
+        }
+    }, [props.isOpenBox]);
+
     return (
         <div className='player-house' onMouseLeave={() => props.setIsOpenBox(false)}>
             <div className='frame'>
@@ -17,7 +23,19 @@ export default function PlayerHouse(props) {
                     Score: {props.score}
                 </h3>
                 <div className='settings-box'>
-                    <input ref={props.focusRef} onChange={(e) => props.setPlayer(e.target.value)} className='name-input' placeholder='Name...' style={{ opacity: `${props.isOpenBox ? '1' : '0'}` }}></input>
+                    <input
+                        ref={props.focusRef}
+                        onChange={(e) => props.setPlayer(e.target.value)}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' || e.key === 'Escape') {
+                                props.setIsOpenBox(false)
+                            }
+                        }}
+                        className='name-input'
+                        placeholder='Name...'
+                        style={{ opacity: `${props.isOpenBox ? '1' : '0'}` }}>
+
+                    </input>
                     <GearIcon
                         onClick={() => {
                             props.setIsOpenBox(!props.isOpenBox);

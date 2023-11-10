@@ -68,7 +68,7 @@ function App() {
   });
 
   const startNewGameProps = Object.values({
-    setIsWinner, setIsAvailableCell, setMatrix, initializeMatrix, activePlayer, setActivePlayer
+    isWinner, setIsWinner, setIsAvailableCell, setMatrix, initializeMatrix, activePlayer, setActivePlayer
   });
 
   const playerAProps = {

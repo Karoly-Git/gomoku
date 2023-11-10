@@ -26,11 +26,14 @@ export function checkIsAvaliableCell(matrix, setIsAvailableCell) {
     }
 }
 
-export function startNewGame(setIsWinner, setIsAvailableCell, setMatrix, initializeMatrix, activePlayer, setActivePlayer) {
+export function startNewGame(
+    isWinner, setIsWinner, setIsAvailableCell, setMatrix,
+    initializeMatrix, activePlayer, setActivePlayer
+) {
     setIsWinner(false);
     setIsAvailableCell(true);
     setMatrix(initializeMatrix());
-    setActivePlayer(activePlayer === 'A' ? 'B' : 'A'); // The winner starts next game.
+    isWinner ? setActivePlayer(activePlayer === 'A' ? 'B' : 'A') : setActivePlayer('A'); // The winner starts next game.
 }
 
 
