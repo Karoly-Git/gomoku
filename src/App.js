@@ -1,10 +1,10 @@
 // React Imports
 import React, { useState, useRef } from 'react';
 
-//Component Impors
+// Component Impors
 import Developer from './components/Developer';
 
-//Style Imports
+// Style Imports
 import './App.css';
 
 // Icon Imports
@@ -12,6 +12,9 @@ import { BsFillGearFill as GearIcon } from 'react-icons/bs';
 import { MdDone as DoneIcon } from 'react-icons/md';
 import { AiOutlineClose as XIcon } from 'react-icons/ai';
 import { BsCircle as OIcon } from 'react-icons/bs';
+
+// Function Imports
+import { checkHorizontal, checkVertical, checkDiagonalA, checkDiagonalB, updateCellState, checkIsAvaliableCell, startNewGame } from './js/gameLogic'
 
 function App() {
   /*
@@ -35,10 +38,12 @@ function App() {
 
   const winCount = 5;
 
+  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+
   const [activePlayer, setActivePlayer] = useState('A');
 
   const [isAvailableCell, setIsAvailableCell] = useState(true);
-  const [isThereWinner, setIsThereWinner] = useState(false);
+  const [isWinner, setIsWinner] = useState(false);
   const [isCursor, setIsCursor] = useState(false);
 
   const [playerA, setPlayerA] = useState('Player - A');
@@ -56,216 +61,46 @@ function App() {
   const [scoreA, setScoreA] = useState(0);
   const [scoreB, setScoreB] = useState(0);
 
-  function makeMatrix(n = 10, m = 10) {
+  function initializeMatrix(n = 10, m = 10) {
     let matrix = new Array(m).fill(new Array(n).fill(null));
     matrix = matrix.map((y, yIndex) => y.map((x, xIndex) => x = { x: xIndex, y: yIndex, player: '' }))
     return matrix;
   };
 
-  const [matrix, setMatrix] = useState(makeMatrix());
+  const [matrix, setMatrix] = useState(initializeMatrix());
 
-  function handleClick(x, y) {
-    updateCellState(x, y);
-    checkIsAvaliableCell();
-
-    checkHorizontal(x, y)
-    checkVertical(x, y);
-    checkDiagonal_A(x, y);
-    checkDiagonal_B(x, y);
+  function handleCellClick(x, y) {
+    updateCellState(x, y, matrix, setMatrix, activePlayer, setActivePlayer);
+    checkIsAvaliableCell(matrix, setIsAvailableCell);
+    checkHorizontal(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner)
+    checkVertical(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner);
+    checkDiagonalA(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner);
+    checkDiagonalB(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner);
   }
 
-  function updateCellState(x, y) {
-    let newMatrix = [...matrix];
-
-    if (newMatrix[y][x].player === '') {
-      newMatrix[y][x].player = activePlayer;
-      setActivePlayer(newMatrix[y][x].player === 'A' ? 'B' : 'A');
-    }
-
-    setMatrix(newMatrix);
+  function handleResetClick() {
+    startNewGame(setIsWinner, setIsAvailableCell, setMatrix, initializeMatrix, activePlayer, setActivePlayer)
   }
-
-  function checkHorizontal(x, y) {
-    let startX = x;
-    let count = 0;
-
-    for (let i = x; i >= 0; i--) {
-      if (matrix[y][i].player === '' || matrix[y][i].player === (activePlayer === 'A' ? 'B' : 'A')) {
-        break;
-      }
-
-      startX = i;
-    }
-
-    for (let k = startX; k < matrix[0].length; k++) {
-      count++;
-
-      if (count >= winCount) {
-        //console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
-        activePlayer === 'A' ? setScoreA(scoreA + 1) : setScoreB(scoreB + 1);
-        setIsThereWinner(true);
-        break;
-      }
-
-      if (!matrix[y][k + 1] || matrix[y][k].player !== matrix[y][k + 1].player) {
-        break;
-      }
-    }
-  }
-
-  function checkVertical(x, y) {
-    let startY = y;
-    let count = 0;
-
-    for (let i = y; i >= 0; i--) {
-      if (matrix[i][x].player === '' || matrix[i][x].player === (activePlayer === 'A' ? 'B' : 'A')) {
-        break;
-      }
-
-      startY = i;
-    }
-
-    for (let k = startY; k < matrix.length; k++) {
-      count++
-
-      if (count >= winCount) {
-        //console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
-        activePlayer === 'A' ? setScoreA(scoreA + 1) : setScoreB(scoreB + 1);
-        setIsThereWinner(true);
-        break;
-      }
-
-      if (!matrix[k + 1] || matrix[k][x].player !== matrix[k + 1][x].player) {
-        break;
-      }
-    }
-  }
-
-  function checkDiagonal_A(x, y) {
-    let count = 0;
-
-    let indexX = x;
-    let indexY = y;
-
-    let startX;
-    let startY;
-
-    while (indexX >= 0 && indexY >= 0) {
-      if (matrix[indexY][indexX].player === '' || matrix[indexY][indexX].player === (activePlayer === 'A' ? 'B' : 'A')) {
-        break;
-      }
-
-      startX = indexX;
-      startY = indexY;
-
-      indexX--;
-      indexY--;
-    }
-
-    while (startX < matrix[0].length && startY < matrix.length) {
-      if (matrix[startY][startX].player === '' || matrix[startY][startX].player === (activePlayer === 'A' ? 'B' : 'A')) {
-        break;
-      }
-
-      count++;
-
-      if (count >= winCount) {
-        //console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
-        activePlayer === 'A' ? setScoreA(scoreA + 1) : setScoreB(scoreB + 1);
-        setIsThereWinner(true);
-        break;
-      }
-
-      startX++;
-      startY++;
-    }
-  }
-
-  function checkDiagonal_B(x, y) {
-    let count = 0;
-
-    let indexX = x;
-    let indexY = y;
-
-    let startX;
-    let startY;
-
-    while (indexX < matrix[0].length && indexY >= 0) {
-      if (matrix[indexY][indexX].player === '' || matrix[indexY][indexX].player === (activePlayer === 'A' ? 'B' : 'A')) {
-        break;
-      }
-
-      startX = indexX;
-      startY = indexY;
-
-      indexX++;
-      indexY--;
-    }
-
-    while (startX >= 0 && startY < matrix.length) {
-      if (matrix[startY][startX].player === '' || matrix[startY][startX].player === (activePlayer === 'A' ? 'B' : 'A')) {
-        break;
-      }
-
-      count++;
-
-      if (count >= winCount) {
-        //console.log(activePlayer === 'A' ? `${playerA} won!` : `${playerB} won!`);
-        activePlayer === 'A' ? setScoreA(scoreA + 1) : setScoreB(scoreB + 1);
-        setIsThereWinner(true);
-        break;
-      }
-
-      startX--;
-      startY++;
-    }
-  }
-
-  function checkIsAvaliableCell() {
-    let isAvailableCell = false;
-
-    for (let row of matrix) {
-      for (let cell of row) {
-        if (cell.player === '') {
-          isAvailableCell = true;
-          break;
-        }
-      }
-    }
-
-    if (!isAvailableCell) {
-      setIsAvailableCell(false);
-    }
-  }
-
-  function startNewGame() {
-    setIsThereWinner(false);
-    setIsAvailableCell(true);
-    setMatrix(makeMatrix());
-    setActivePlayer(activePlayer === 'A' ? 'B' : 'A'); // The winner starts next game.
-  }
-
-  const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
   function handleMouseMove(e) {
     setCursorPosition({ x: e.clientX, y: e.clientY });
-    //console.log({ x: e.clientX, y: e.clientY })
   }
+
 
   return (
     <div className="App" onMouseMove={handleMouseMove}>
 
-      {isCursor && isAvailableCell && !isThereWinner &&
+      {isCursor && isAvailableCell && !isWinner &&
         <div className='cursor' style={{ top: `${cursorPosition.y - 20}px`, left: `${cursorPosition.x + 20}px` }}>
           {activePlayer === 'A' ? playerA : playerB}
         </div>
       }
 
-      <header style={isThereWinner || !isAvailableCell ? { backgroundColor: 'yellow' } : { backgroundColor: 'gray' }}>
+      <header style={isWinner || !isAvailableCell ? { backgroundColor: 'yellow' } : { backgroundColor: 'gray' }}>
         <div
           className='who-won'
-          style={isThereWinner || !isAvailableCell ? { color: 'black' } : { color: 'white' }}
-        >{isThereWinner ? activePlayer === 'A' ? `${playerB} won!` : `${playerA} won!` : !isAvailableCell ? 'No winner!' : 'Good luck!'}
+          style={isWinner || !isAvailableCell ? { color: 'black' } : { color: 'white' }}
+        >{isWinner ? activePlayer === 'A' ? `${playerB} won!` : `${playerA} won!` : !isAvailableCell ? 'No winner!' : 'Good luck!'}
         </div>
       </header>
 
@@ -308,10 +143,10 @@ function App() {
                     <div
                       className='cell'
                       key={cIndex}
-                      onClick={() => handleClick(cIndex, rIndex)}
+                      onClick={() => handleCellClick(cIndex, rIndex)}
                       style={{
                         backgroundColor: matrix[rIndex][cIndex].player ? 'unset' : '',
-                        pointerEvents: isThereWinner ? 'none' : ''
+                        pointerEvents: isWinner ? 'none' : ''
                       }}
                     >
                       {matrix[rIndex][cIndex].player === '' ? <></> : matrix[rIndex][cIndex].player === 'A' ? <div className='disk disk-A'><OIcon className='icon' />{/*`${cIndex}/${rIndex}`*/}</div> : <div className='disk disk-B'><XIcon className='icon' />{/*`${cIndex}/${rIndex}`*/}</div>}
@@ -354,7 +189,7 @@ function App() {
       </main>
 
       <footer>
-        <button className='reset-btn' onClick={startNewGame}>New Game</button>
+        <button className='reset-btn' onClick={handleResetClick}>New Game</button>
         {!false && <Developer />}
       </footer>
     </div >
