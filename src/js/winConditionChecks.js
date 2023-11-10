@@ -21,57 +21,35 @@ export function checkHorizontal(x, y, matrix, activePlayer, winCount, scoreA, sc
 export function checkVertical(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner) {
     let startY = y;
 
-    for (let i = y; i >= 0; i--) {
-        if (matrix[i][x].player === '' || matrix[i][x].player === (activePlayer === 'A' ? 'B' : 'A')) {
-            break;
-        }
-
-        startY = i;
+    while (startY >= 0 && matrix[startY][x].player === activePlayer) {
+        startY--;
     }
 
     let count = 0;
 
-    for (let k = startY; k < matrix.length; k++) {
-        count++
+    for (let k = startY + 1; k < matrix.length && matrix[k][x].player === activePlayer; k++) {
+        count++;
 
         if (count >= winCount) {
             activePlayer === 'A' ? setScoreA(scoreA + 1) : setScoreB(scoreB + 1);
             setIsWinner(true);
-            break;
-        }
-
-        if (!matrix[k + 1] || matrix[k][x].player !== matrix[k + 1][x].player) {
             break;
         }
     }
 }
 
 export function checkDiagonalA(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner) {
-    let indexX = x;
-    let indexY = y;
+    let startX = x;
+    let startY = y;
 
-    let startX;
-    let startY;
-
-    while (indexX >= 0 && indexY >= 0) {
-        if (matrix[indexY][indexX].player === '' || matrix[indexY][indexX].player === (activePlayer === 'A' ? 'B' : 'A')) {
-            break;
-        }
-
-        startX = indexX;
-        startY = indexY;
-
-        indexX--;
-        indexY--;
+    while (startX >= 0 && startY >= 0 && matrix[startY][startX].player === activePlayer) {
+        startX--;
+        startY--;
     }
 
     let count = 0;
 
-    while (startX < matrix[0].length && startY < matrix.length) {
-        if (matrix[startY][startX].player === '' || matrix[startY][startX].player === (activePlayer === 'A' ? 'B' : 'A')) {
-            break;
-        }
-
+    for (let k = startX + 1, m = startY + 1; k < matrix[0].length && m < matrix.length && matrix[m][k].player === activePlayer; k++, m++) {
         count++;
 
         if (count >= winCount) {
@@ -79,38 +57,21 @@ export function checkDiagonalA(x, y, matrix, activePlayer, winCount, scoreA, sco
             setIsWinner(true);
             break;
         }
-
-        startX++;
-        startY++;
     }
 }
 
 export function checkDiagonalB(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner) {
-    let indexX = x;
-    let indexY = y;
+    let startX = x;
+    let startY = y;
 
-    let startX;
-    let startY;
-
-    while (indexX < matrix[0].length && indexY >= 0) {
-        if (matrix[indexY][indexX].player === '' || matrix[indexY][indexX].player === (activePlayer === 'A' ? 'B' : 'A')) {
-            break;
-        }
-
-        startX = indexX;
-        startY = indexY;
-
-        indexX++;
-        indexY--;
+    while (startX < matrix[0].length && startY >= 0 && matrix[startY][startX].player === activePlayer) {
+        startX++;
+        startY--;
     }
 
     let count = 0;
 
-    while (startX >= 0 && startY < matrix.length) {
-        if (matrix[startY][startX].player === '' || matrix[startY][startX].player === (activePlayer === 'A' ? 'B' : 'A')) {
-            break;
-        }
-
+    for (let k = startX - 1, m = startY + 1; k >= 0 && m < matrix.length && matrix[m][k].player === activePlayer; k--, m++) {
         count++;
 
         if (count >= winCount) {
@@ -118,8 +79,5 @@ export function checkDiagonalB(x, y, matrix, activePlayer, winCount, scoreA, sco
             setIsWinner(true);
             break;
         }
-
-        startX--;
-        startY++;
     }
 }
