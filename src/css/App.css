@@ -14,6 +14,7 @@ body {
 .App .cursor {
   position: absolute;
   color: rgba(255, 255, 255, 0.3);
+  text-transform: capitalize;
 }
 .App header {
   display: flex;
@@ -45,6 +46,7 @@ body {
   border: 1px solid rgba(255, 0, 0, 0.5);
   width: 3rem;
   height: 3rem;
+  transition: all 100ms ease;
 }
 .App main .board .row .cell:hover {
   background-color: rgb(38, 70, 38);
