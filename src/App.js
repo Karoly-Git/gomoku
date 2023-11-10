@@ -5,11 +5,9 @@ import React, { useState, useRef } from 'react';
 import Developer from './components/Developer';
 
 // Style Imports
-import './App.css';
+import './css/App.css';
 
 // Icon Imports
-import { BsFillGearFill as GearIcon } from 'react-icons/bs';
-import { MdDone as DoneIcon } from 'react-icons/md';
 import { AiOutlineClose as XIcon } from 'react-icons/ai';
 import { BsCircle as OIcon } from 'react-icons/bs';
 
@@ -17,6 +15,7 @@ import { BsCircle as OIcon } from 'react-icons/bs';
 import { checkHorizontal, checkVertical, checkDiagonalA, checkDiagonalB } from './js/winConditionChecks'
 import { updateCellState, checkIsAvaliableCell, startNewGame } from './js/boardStateUpdates'
 import { initializeMatrix } from './js/initializeMatrix'
+import PlayerHouse from './components/PlayerHouse';
 
 function App() {
 
@@ -39,10 +38,8 @@ function App() {
   const [isWinner, setIsWinner] = useState(false);
 
   // Player Settings State Hooks
-  const [playerA, setPlayerA] = useState('Player - A');
-  const [playerB, setPlayerB] = useState('Player - B');
-  const [inputA, setInputA] = useState('');
-  const [inputB, setInputB] = useState('');
+  const [playerA, setPlayerA] = useState('Player - 1');
+  const [playerB, setPlayerB] = useState('Player - 2');
 
   // Refs
   const refA = useRef();
@@ -56,24 +53,61 @@ function App() {
   const [scoreA, setScoreA] = useState(0);
   const [scoreB, setScoreB] = useState(0);
 
+  // Argument Configurations
+  const winnerCheckProps = Object.values({
+    matrix, activePlayer, winCount, scoreA, scoreB,
+    setScoreA, setScoreB, setIsWinner, setMatrix,
+  });
+
+  const cellStateProps = Object.values({
+    matrix, setMatrix, activePlayer, setActivePlayer
+  });
+
+  const checkIsAvaliableCelProps = Object.values({
+    matrix, setIsAvailableCell
+  });
+
+  const startNewGameProps = Object.values({
+    setIsWinner, setIsAvailableCell, setMatrix, initializeMatrix, activePlayer, setActivePlayer
+  });
+
+  const playerAProps = {
+    player: playerA,
+    playerIcon: <OIcon className='icon' />,
+    score: scoreA,
+    focusRef: refA,
+    setPlayer: setPlayerA,
+    isOpenBox: isOpenBoxA,
+    setIsOpenBox: setIsOpenBoxA,
+  };
+
+  const playerBProps = {
+    player: playerB,
+    playerIcon: <XIcon className='icon' />,
+    score: scoreB,
+    focusRef: refB,
+    setPlayer: setPlayerB,
+    isOpenBox: isOpenBoxB,
+    setIsOpenBox: setIsOpenBoxB,
+  };
+
   // Event Handlers
   function handleCellClick(x, y) {
-    updateCellState(x, y, matrix, setMatrix, activePlayer, setActivePlayer);
-    checkIsAvaliableCell(matrix, setIsAvailableCell);
-    checkHorizontal(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner, setMatrix)
-    checkVertical(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner, setMatrix);
-    checkDiagonalA(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner, setMatrix);
-    checkDiagonalB(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner, setMatrix);
+    updateCellState(x, y, ...cellStateProps);
+    checkIsAvaliableCell(...checkIsAvaliableCelProps);
+    checkHorizontal(x, y, ...winnerCheckProps)
+    checkVertical(x, y, ...winnerCheckProps);
+    checkDiagonalA(x, y, ...winnerCheckProps);
+    checkDiagonalB(x, y, ...winnerCheckProps);
   }
 
   function handleResetClick() {
-    startNewGame(setIsWinner, setIsAvailableCell, setMatrix, initializeMatrix, activePlayer, setActivePlayer)
+    startNewGame(...startNewGameProps)
   }
 
   function handleMouseMove(e) {
     setCursorPosition({ x: e.clientX, y: e.clientY });
   }
-
 
   return (
     <div className="App" onMouseMove={handleMouseMove}>
@@ -94,35 +128,7 @@ function App() {
 
       <main>
 
-        <div className='player-house'>
-          <div className='frame'>
-            <h2>
-              {playerA}
-              <OIcon className='icon' />
-            </h2>
-            <h3>
-              Score: {scoreA}
-            </h3>
-            <div className='settings-box'>
-              <input ref={refA} onChange={(e) => setPlayerA(e.target.value)} className='name-input' placeholder='Name...' style={{ opacity: `${isOpenBoxA ? '1' : '0'}` }}></input>
-              <GearIcon
-                onClick={() => {
-                  setIsOpenBoxA(!isOpenBoxA);
-                  refA.current.focus()
-                }}
-                className='icon gear-icon'
-                style={{ opacity: `${isOpenBoxA ? '0' : '1'}` }}
-              />
-              <DoneIcon
-                onClick={() => {
-                  setIsOpenBoxA(!isOpenBoxA)
-                }}
-                className='icon done-icon'
-                style={{ opacity: `${isOpenBoxA ? '1' : '0'}` }}
-              />
-            </div>
-          </div>
-        </div>
+        <PlayerHouse {...playerAProps} />
 
         <div className='board' onMouseEnter={() => setIsCursor(true)} onMouseLeave={() => setIsCursor(false)}>
           {
@@ -148,35 +154,7 @@ function App() {
           }
         </div>
 
-        <div className='player-house'>
-          <div className='frame'>
-            <h2>
-              {playerB}
-              <XIcon className='icon' />
-            </h2>
-            <h3>
-              Score: {scoreB}
-            </h3>
-            <div className='settings-box'>
-              <input ref={refB} onChange={(e) => setPlayerB(e.target.value)} className='name-input' placeholder='Name...' style={{ opacity: `${isOpenBoxB ? '1' : '0'}` }}></input>
-              <GearIcon
-                onClick={() => {
-                  setIsOpenBoxB(!isOpenBoxB);
-                  refB.current.focus()
-                }}
-                className='icon gear-icon'
-                style={{ opacity: `${isOpenBoxB ? '0' : '1'}` }}
-              />
-              <DoneIcon
-                onClick={() => {
-                  setIsOpenBoxB(!isOpenBoxB)
-                }}
-                className='icon done-icon'
-                style={{ opacity: `${isOpenBoxB ? '1' : '0'}` }}
-              />
-            </div>
-          </div>
-        </div>
+        <PlayerHouse {...playerBProps} />
 
       </main>
 
