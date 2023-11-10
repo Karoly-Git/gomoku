@@ -1,13 +1,17 @@
 export function checkHorizontal(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner) {
     let startX = x;
 
-    while (startX >= 0 && matrix[y][startX].player === activePlayer) {
-        startX--;
+    for (let i = x; i >= 0; i--) {
+        if (matrix[y][i].player === '' || matrix[y][i].player === (activePlayer === 'A' ? 'B' : 'A')) {
+            break;
+        }
+
+        startX = i;
     }
 
     let count = 0;
 
-    for (let k = startX + 1; k < matrix[0].length && matrix[y][k].player === activePlayer; k++) {
+    for (let k = startX; k < matrix[0].length; k++) {
         count++;
 
         if (count >= winCount) {
@@ -15,8 +19,13 @@ export function checkHorizontal(x, y, matrix, activePlayer, winCount, scoreA, sc
             setIsWinner(true);
             break;
         }
+
+        if (!matrix[y][k + 1] || matrix[y][k].player !== matrix[y][k + 1].player) {
+            break;
+        }
     }
 }
+
 
 export function checkVertical(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner) {
     let startY = y;
@@ -123,3 +132,6 @@ export function checkDiagonalB(x, y, matrix, activePlayer, winCount, scoreA, sco
         startY++;
     }
 }
+
+
+

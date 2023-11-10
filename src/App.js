@@ -19,24 +19,6 @@ import { updateCellState, checkIsAvaliableCell, startNewGame } from './js/boardS
 import { initializeMatrix } from './js/initializeMatrix'
 
 function App() {
-  /*
-    1.  Make an n x m matrix, where n represents the num of columns, m represents the num of rows.
-    2.  Draw a board based on the Matrix.
-    3.  Get cell position when clicking on a cell.
-    4.  When clicking on a cell, set the 'player' value to the active player.
-    5.  Draw a disk in the clicked cell, but draw disks in different colors for the players, prevent overwriting the existing disks, set hover effect when cell is avaliable.
-    6.  Check if there is available cell.
-    7.  Check horizontally if active player won.
-    8.  Check vertically if active player won.
-    9.  Check diagonal-A is active player won.
-    10. Check diagonal-B is active player won.
-    11. Add a reset button to restart game.
-    12. Upon resetting the game, if there is a winner, then the winner starts next game.
-    13. Display the winner on the headline.
-    14. Adding player's boxes.
-    15. Adding name setup option.
-    16. Adding custom cursor.
-  */
 
   // Constants
   const winCount = 3;
