@@ -60,8 +60,14 @@ body {
 .App main .board .row .cell .disk .icon {
   font-size: 2rem;
 }
+.App main .board .row .cell .disk-A {
+  color: yellow;
+}
 .App main .board .row .cell .disk-A .icon {
   color: white;
+}
+.App main .board .row .cell .disk-B {
+  color: red;
 }
 .App main .board .row .cell .disk-B .icon {
   color: red;

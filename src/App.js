@@ -21,7 +21,9 @@ import { initializeMatrix } from './js/initializeMatrix'
 function App() {
 
   // Constants
-  const winCount = 3;
+  const winCount = 5;
+  const showIcons = true;
+  const winningBackground = 'rgb(38, 70, 38)';
 
   // State Hooks //
   // Game State Hooks
@@ -58,10 +60,10 @@ function App() {
   function handleCellClick(x, y) {
     updateCellState(x, y, matrix, setMatrix, activePlayer, setActivePlayer);
     checkIsAvaliableCell(matrix, setIsAvailableCell);
-    checkHorizontal(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner)
-    checkVertical(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner);
-    checkDiagonalA(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner);
-    checkDiagonalB(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner);
+    checkHorizontal(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner, setMatrix)
+    checkVertical(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner, setMatrix);
+    checkDiagonalA(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner, setMatrix);
+    checkDiagonalB(x, y, matrix, activePlayer, winCount, scoreA, scoreB, setScoreA, setScoreB, setIsWinner, setMatrix);
   }
 
   function handleResetClick() {
@@ -131,11 +133,12 @@ function App() {
                       key={cIndex}
                       onClick={() => handleCellClick(cIndex, rIndex)}
                       style={{
-                        backgroundColor: matrix[rIndex][cIndex].player ? 'unset' : '',
+                        //backgroundColor: matrix[rIndex][cIndex].player ? 'unset' : '',
+                        backgroundColor: matrix[rIndex][cIndex].player && !isWinner ? 'unset' : matrix[rIndex][cIndex].winCell === true ? winningBackground : '',
                         pointerEvents: isWinner ? 'none' : ''
                       }}
                     >
-                      {matrix[rIndex][cIndex].player === '' ? <></> : matrix[rIndex][cIndex].player === 'A' ? <div className='disk disk-A'><OIcon className='icon' />{/*`${cIndex}/${rIndex}`*/}</div> : <div className='disk disk-B'><XIcon className='icon' />{/*`${cIndex}/${rIndex}`*/}</div>}
+                      {matrix[rIndex][cIndex].player === '' ? <></> : matrix[rIndex][cIndex].player === 'A' ? <div className='disk disk-A'>{showIcons && <OIcon className='icon' />}{!showIcons && `${cIndex}/${rIndex}`}</div> : <div className='disk disk-B'>{showIcons && <XIcon className='icon' />}{!showIcons && `${cIndex}/${rIndex}`}</div>}
                     </div>
                   )
                 }
