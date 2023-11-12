@@ -32,20 +32,35 @@ matrix =
         [[0, 9, ' '], [1, 9, ' '], [2, 9, ' '], [3, 9, ' '], [4, 9, 'O'], [5, 9, ' '], [6, 9, ' '], [7, 9, ' '], [8, 9, ' '], [9, 9, ' ']]
     ];
 //*/
-///*
+/*
 matrix =
     [
-        [[0, 0, 'O'], [1, 0, ' '], [2, 0, ' '], [3, 0, ' '], [4, 0, ' '], [5, 0, 'O'], [6, 0, ' '], [7, 0, ' '], [8, 0, ' '], [9, 0, 'O']],
-        [[0, 1, 'O'], [1, 1, ' '], [2, 1, ' '], [3, 1, ' '], [4, 1, 'O'], [5, 1, ' '], [6, 1, 'O'], [7, 1, ' '], [8, 1, 'O'], [9, 1, ' ']],
-        [[0, 2, 'O'], [1, 2, 'O'], [2, 2, ' '], [3, 2, ' '], [4, 2, ' '], [5, 2, 'O'], [6, 2, ' '], [7, 2, 'O'], [8, 2, ' '], [9, 2, ' ']],
+        [[0, 0, ' '], [1, 0, ' '], [2, 0, ' '], [3, 0, ' '], [4, 0, ' '], [5, 0, 'O'], [6, 0, ' '], [7, 0, ' '], [8, 0, ' '], [9, 0, ' ']],
+        [[0, 1, ' '], [1, 1, ' '], [2, 1, ' '], [3, 1, ' '], [4, 1, 'O'], [5, 1, ' '], [6, 1, 'O'], [7, 1, ' '], [8, 1, 'O'], [9, 1, ' ']],
+        [[0, 2, ' '], [1, 2, 'O'], [2, 2, ' '], [3, 2, ' '], [4, 2, ' '], [5, 2, 'O'], [6, 2, ' '], [7, 2, 'O'], [8, 2, ' '], [9, 2, ' ']],
         [[0, 3, 'O'], [1, 3, ' '], [2, 3, 'O'], [3, 3, ' '], [4, 3, ' '], [5, 3, ' '], [6, 3, 'O'], [7, 3, ' '], [8, 3, ' '], [9, 3, ' ']],
         [[0, 4, 'O'], [1, 4, ' '], [2, 4, ' '], [3, 4, 'O'], [4, 4, 'O'], [5, 4, 'O'], [6, 4, 'O'], [7, 4, ' '], [8, 4, ' '], [9, 4, ' ']],
         [[0, 5, 'O'], [1, 5, ' '], [2, 5, ' '], [3, 5, ' '], [4, 5, 'O'], [5, 5, ' '], [6, 5, ' '], [7, 5, ' '], [8, 5, ' '], [9, 5, ' ']],
         [[0, 6, 'O'], [1, 6, ' '], [2, 6, ' '], [3, 6, ' '], [4, 6, ' '], [5, 6, 'O'], [6, 6, ' '], [7, 6, ' '], [8, 6, ' '], [9, 6, ' ']],
-        [[0, 7, 'O'], [1, 7, 'O'], [2, 7, 'O'], [3, 7, 'O'], [4, 7, 'O'], [5, 7, 'O'], [6, 7, 'O'], [7, 7, 'O'], [8, 7, ' '], [9, 7, ' ']],
+        [[0, 7, 'O'], [1, 7, 'O'], [2, 7, 'O'], [3, 7, 'O'], [4, 7, 'O'], [5, 7, ' '], [6, 7, ' '], [7, 7, ' '], [8, 7, ' '], [9, 7, ' ']],
         [[0, 8, ' '], [1, 8, ' '], [2, 8, ' '], [3, 8, ' '], [4, 8, ' '], [5, 8, ' '], [6, 8, ' '], [7, 8, ' '], [8, 8, ' '], [9, 8, ' ']],
         [[0, 9, ' '], [1, 9, ' '], [2, 9, ' '], [3, 9, ' '], [4, 9, ' '], [5, 9, ' '], [6, 9, ' '], [7, 9, ' '], [8, 9, ' '], [9, 9, ' ']]
     ];
+//*/
+matrix =
+    [
+        [[0, 0, ' '], [1, 0, ' '], [2, 0, ' '], [3, 0, ' '], [4, 0, ' '], [5, 0, ' '], [6, 0, ' '], [7, 0, ' '], [8, 0, ' '], [9, 0, ' ']],
+        [[0, 1, 'O'], [1, 1, ' '], [2, 1, ' '], [3, 1, ' '], [4, 1, ' '], [5, 1, ' '], [6, 1, ' '], [7, 1, ' '], [8, 1, ' '], [9, 1, ' ']],
+        [[0, 2, 'O'], [1, 2, ' '], [2, 2, ' '], [3, 2, ' '], [4, 2, ' '], [5, 2, ' '], [6, 2, ' '], [7, 2, ' '], [8, 2, ' '], [9, 2, ' ']],
+        [[0, 3, 'O'], [1, 3, ' '], [2, 3, ' '], [3, 3, ' '], [4, 3, ' '], [5, 3, ' '], [6, 3, ' '], [7, 3, ' '], [8, 3, ' '], [9, 3, ' ']],
+        [[0, 4, ' '], [1, 4, ' '], [2, 4, ' '], [3, 4, ' '], [4, 4, ' '], [5, 4, ' '], [6, 4, ' '], [7, 4, ' '], [8, 4, ' '], [9, 4, ' ']],
+        [[0, 5, ' '], [1, 5, ' '], [2, 5, ' '], [3, 5, ' '], [4, 5, ' '], [5, 5, ' '], [6, 5, ' '], [7, 5, ' '], [8, 5, ' '], [9, 5, ' ']],
+        [[0, 6, ' '], [1, 6, ' '], [2, 6, ' '], [3, 6, ' '], [4, 6, ' '], [5, 6, ' '], [6, 6, ' '], [7, 6, ' '], [8, 6, ' '], [9, 6, ' ']],
+        [[0, 7, ' '], [1, 7, ' '], [2, 7, ' '], [3, 7, ' '], [4, 7, ' '], [5, 7, ' '], [6, 7, ' '], [7, 7, ' '], [8, 7, ' '], [9, 7, ' ']],
+        [[0, 8, 'O'], [1, 8, ' '], [2, 8, ' '], [3, 8, ' '], [4, 8, ' '], [5, 8, ' '], [6, 8, ' '], [7, 8, ' '], [8, 8, ' '], [9, 8, ' ']],
+        [[0, 9, 'O'], [1, 9, ' '], [2, 9, ' '], [3, 9, ' '], [4, 9, ' '], [5, 9, ' '], [6, 9, ' '], [7, 9, ' '], [8, 9, ' '], [9, 9, ' ']]
+    ];
+
 //*/
 
 function firsStep() {
@@ -55,7 +70,6 @@ function firsStep() {
     matrix[y][x][0] = x;
     matrix[y][x][1] = y;
 };
-
 
 function findTheLongests() {
     let listofLongests = [];
@@ -71,7 +85,7 @@ function findTheLongests() {
                 currentSequence.push(cell);
                 if (longestSequence.length <= currentSequence.length) {
                     longestSequence = [...currentSequence];
-                    listofLongests.push(longestSequence);
+                    listofLongests.push([...longestSequence, 'H']);
                 }
             } else {
                 currentSequence = [];
@@ -89,7 +103,7 @@ function findTheLongests() {
                 currentSequence.push(cell);
                 if (longestSequence.length <= currentSequence.length) {
                     longestSequence = [...currentSequence];
-                    listofLongests.push(longestSequence);
+                    listofLongests.push([...longestSequence, 'V']);
                 }
             } else {
                 currentSequence = [];
@@ -108,7 +122,7 @@ function findTheLongests() {
                 currentSequence.push(cell);
                 if (longestSequence.length <= currentSequence.length) {
                     longestSequence = [...currentSequence];
-                    listofLongests.push(longestSequence);
+                    listofLongests.push([...longestSequence.sort((a, b) => a[0] - b[0]), 'A']);
                 }
             } else {
                 currentSequence = [];
@@ -128,7 +142,7 @@ function findTheLongests() {
                 currentSequence.push(cell);
                 if (longestSequence.length <= currentSequence.length) {
                     longestSequence = [...currentSequence];
-                    listofLongests.push(longestSequence);
+                    listofLongests.push([...longestSequence.sort((a, b) => a[0] - b[0]), 'A']);
                 }
             } else {
                 currentSequence = [];
@@ -150,7 +164,7 @@ function findTheLongests() {
                 currentSequence.push(cell);
                 if (longestSequence.length <= currentSequence.length) {
                     longestSequence = [...currentSequence];
-                    listofLongests.push(longestSequence);
+                    listofLongests.push([...longestSequence.sort((a, b) => a[0] - b[0]), 'B']);
                 }
             } else {
                 currentSequence = [];
@@ -170,7 +184,7 @@ function findTheLongests() {
                 currentSequence.push(cell);
                 if (longestSequence.length <= currentSequence.length) {
                     longestSequence = [...currentSequence];
-                    listofLongests.push(longestSequence);
+                    listofLongests.push([...longestSequence.sort((a, b) => a[0] - b[0]), 'B']);
                 }
             } else {
                 currentSequence = [];
@@ -185,25 +199,139 @@ function findTheLongests() {
 
     let lengthOfLongest = listofLongests[0].length;
 
+    //return listofLongests;
     return listofLongests.filter(sequence => sequence.length === lengthOfLongest);
 };
 
 let list = findTheLongests();
 
-list = [1, 2];
+//list.forEach(e => console.log(e));
 
-//console.log(list);
+let seq = [
+    [0, 1, 'O'],
+    [0, 3, 'O'],
+    'V'
+];
 
-if (list.length === 0) {
-    // First Step
-    console.log('First Step');
-} else if (list.length === 1) {
-    // Put to the end
-    console.log('Put to the end');
-} else {
-    // Choose one and put to the end
-    console.log('Choose one and put to the end');
+function checkVerticalOpen(sequence) {
+    let direction = sequence[sequence.length - 1];
+
+    let cellX = sequence[0][0];
+
+    let cellTopY = sequence[0][1];
+
+    let isTopOpen =
+        direction === 'V' &&
+        cellTopY !== 0 &&
+        matrix[cellTopY - 1][0][2] === ' ';
+    ;
+
+    let cellBottomY = sequence[sequence.length - 2][1];
+
+    let isBottomOpen =
+        direction === 'V' &&
+        cellBottomY !== matrix.length - 1 &&
+        matrix[cellBottomY + 1][0][2] === ' ';
+    ;
+
+    let possibleCountDown = 0;
+    for (let y = cellTopY; y <= 9; y++) {
+        let value = matrix[y][cellX][2];
+        if (value === 'O' || value === ' ') {
+            possibleCountDown++
+        } else {
+            break;
+        }
+    }
+
+    let possibleCountUp = 0;
+    for (let y = cellBottomY; y >= 0; y--) {
+        let value = matrix[y][cellX][2];
+        if (value === 'O' || value === ' ') {
+            possibleCountUp++
+        } else {
+            break;
+        }
+    }
+
+    let gapTop = 0;
+    for (let y = cellTopY - 1; y >= 0; y--) {
+        let value = matrix[y][cellX][2];
+        if (value === ' ') {
+            gapTop++
+        } else {
+            break;
+        }
+    }
+
+    let gapBottom = 0;
+    for (let y = cellBottomY + 1; y <= 9; y++) {
+        let value = matrix[y][cellX][2];
+        if (value === ' ') {
+            gapBottom++
+        } else {
+            break;
+        }
+    }
+
+    console.log('Possible Count Up:', possibleCountUp);
+    console.log('Possible Count Down:', possibleCountDown);
+    console.log('Gap Top:', gapTop);
+    console.log('Gap Bottom:', gapBottom);
+
+    console.log(isTopOpen ? 'Top Open' : 'Top Not Open');
+    console.log(isBottomOpen ? 'Bottom Open' : 'Bottom Not Open');
 }
+
+checkVerticalOpen(seq);
+
+
+/////list = [[
+/////    [0, 7, 'O'],
+/////    [1, 7, 'O'],
+/////    [2, 7, 'O'],
+/////    [3, 7, 'O'],
+/////    [4, 7, 'O'],
+/////    [5, 7, 'O'],
+/////    [6, 7, 'O'],
+/////    [9, 7, 'O']
+/////]];
+
+//let edgesX = [0, matrix.length - 1];
+
+/////if (list.length === 0) {
+/////    // First Step
+/////    console.log(list);
+/////    console.log('First Step, length: 0');
+/////} else if (list.length === 1) {
+/////    /*
+/////    - Check which end is open
+/////    - Then put to the end
+/////    */
+/////
+/////    let cellLeft = list[0][0];
+/////    let cellRight = list[0][list[0].length - 1];
+/////
+/////    //console.log(cellLeft, cellRight);
+/////
+/////    let leftIsOpen = !(
+/////        cellLeft[0] === 0 || cellLeft[0] === matrix.length - 1 ||
+/////        cellLeft[1] === 0 || cellLeft[1] === matrix.length - 1
+/////    );
+/////
+/////    let rightIsOpen = !(
+/////        cellRight[0] === 0 || cellRight[0] === matrix.length - 1 ||
+/////        cellRight[1] === 0 || cellRight[1] === matrix.length - 1
+/////    );
+/////
+/////    console.log(leftIsOpen, rightIsOpen);
+/////    //console.log(list);
+/////    //console.log('Put to the end, length: 1');
+/////} else {
+/////    // Choose one and put to the end
+/////    console.log(list);
+/////    console.log('Choose one and put to the end, length > 1');
+/////}
 
 
 
