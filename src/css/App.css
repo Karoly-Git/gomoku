@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 body {
@@ -63,7 +64,7 @@ body {
   font-size: 2rem;
 }
 .App main .board .row .cell .disk-A {
-  color: yellow;
+  color: white;
 }
 .App main .board .row .cell .disk-A .icon {
   color: white;
@@ -95,7 +96,6 @@ body {
   margin: 5px;
   font-size: 18px;
   color: #c0392b;
-  font-family: "Helvetica", sans-serif;
   min-width: 100%;
   text-transform: capitalize;
 }

@@ -1,15 +1,14 @@
-$primary-color: #f9f9f9;
-$secondary-color: #3498db; // A cool blue color
 $accent-color: #e74c3c;
 $cool-text-color: #2c3e50; // A deep blue color for text
 $fancy-text-color: #c0392b; // A fancy red color for text
-$heading-font: 'Helvetica', sans-serif;
-$body-font: 'Arial', sans-serif;
+
+$cell-size: 2rem;
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: sans-serif;
 }
 
 body {
@@ -67,17 +66,17 @@ body {
             display: flex;
             justify-content: center;
             align-items: center;
-            width: 2rem;
-            height: 2rem;
+            width: $cell-size;
+            height: $cell-size;
             border-radius: 50%;
 
             .icon {
-              font-size: 2rem;
+              font-size: $cell-size;
             }
           }
 
           .disk-A {
-            color: yellow;
+            color: white;
 
             .icon {
               color: white;
@@ -117,7 +116,6 @@ body {
           margin: 5px;
           font-size: 18px;
           color: $fancy-text-color;
-          font-family: $heading-font;
           min-width: 100%;
           text-transform: capitalize;
 
