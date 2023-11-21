@@ -10,7 +10,7 @@ function initializeMatrix(n = nX, m = mY) {
                     [2, 3, 4, 5, 6, 7, 8].includes(yIndex) && xIndex === 3 ||
                     [0, 1, 2, 3, 4, 5, 6, 7].includes(yIndex) && xIndex === 4 ||
                     [3, 4, 5, 6, 7].includes(yIndex) && xIndex === 5
-                    ? 'O' : ' ']
+                    ? 'o' : ' ']
         ))
     );
 }
@@ -20,45 +20,45 @@ function initializeMatrix(n = nX, m = mY) {
 /*
 matrix =
     [
-        [[0, 0, 'O'], [1, 0, ' '], [2, 0, ' '], [3, 0, ' '], [4, 0, 'O'], [5, 0, ' '], [6, 0, 'O'], [7, 0, 'O'], [8, 0, 'O'], [9, 0, 'O']],
-        [[0, 1, ' '], [1, 1, 'O'], [2, 1, 'O'], [3, 1, 'O'], [4, 1, 'O'], [5, 1, 'O'], [6, 1, ' '], [7, 1, ' '], [8, 1, ' '], [9, 1, ' ']],
-        [[0, 2, ' '], [1, 2, ' '], [2, 2, 'O'], [3, 2, 'O'], [4, 2, 'O'], [5, 2, ' '], [6, 2, ' '], [7, 2, ' '], [8, 2, ' '], [9, 2, ' ']],
-        [[0, 3, ' '], [1, 3, ' '], [2, 3, ' '], [3, 3, 'O'], [4, 3, ' '], [5, 3, 'O'], [6, 3, ' '], [7, 3, ' '], [8, 3, ' '], [9, 3, ' ']],
-        [[0, 4, ' '], [1, 4, ' '], [2, 4, ' '], [3, 4, 'O'], [4, 4, 'O'], [5, 4, 'O'], [6, 4, ' '], [7, 4, ' '], [8, 4, ' '], [9, 4, ' ']],
-        [[0, 5, 'O'], [1, 5, ' '], [2, 5, ' '], [3, 5, 'O'], [4, 5, 'O'], [5, 5, 'O'], [6, 5, ' '], [7, 5, ' '], [8, 5, ' '], [9, 5, ' ']],
-        [[0, 6, ' '], [1, 6, 'O'], [2, 6, ' '], [3, 6, ' '], [4, 6, 'O'], [5, 6, 'O'], [6, 6, 'O'], [7, 6, ' '], [8, 6, ' '], [9, 6, ' ']],
-        [[0, 7, ' '], [1, 7, ' '], [2, 7, 'O'], [3, 7, ' '], [4, 7, 'O'], [5, 7, 'O'], [6, 7, ' '], [7, 7, 'O'], [8, 7, ' '], [9, 7, ' ']],
-        [[0, 8, ' '], [1, 8, ' '], [2, 8, ' '], [3, 8, 'O'], [4, 8, ' '], [5, 8, ' '], [6, 8, ' '], [7, 8, ' '], [8, 8, ' '], [9, 8, ' ']],
-        [[0, 9, ' '], [1, 9, ' '], [2, 9, ' '], [3, 9, ' '], [4, 9, 'O'], [5, 9, ' '], [6, 9, ' '], [7, 9, ' '], [8, 9, ' '], [9, 9, ' ']]
+        [[0, 0, 'o'], [1, 0, ' '], [2, 0, ' '], [3, 0, ' '], [4, 0, 'o'], [5, 0, ' '], [6, 0, 'o'], [7, 0, 'o'], [8, 0, 'o'], [9, 0, 'o']],
+        [[0, 1, ' '], [1, 1, 'o'], [2, 1, 'o'], [3, 1, 'o'], [4, 1, 'o'], [5, 1, 'o'], [6, 1, ' '], [7, 1, ' '], [8, 1, ' '], [9, 1, ' ']],
+        [[0, 2, ' '], [1, 2, ' '], [2, 2, 'o'], [3, 2, 'o'], [4, 2, 'o'], [5, 2, ' '], [6, 2, ' '], [7, 2, ' '], [8, 2, ' '], [9, 2, ' ']],
+        [[0, 3, ' '], [1, 3, ' '], [2, 3, ' '], [3, 3, 'o'], [4, 3, ' '], [5, 3, 'o'], [6, 3, ' '], [7, 3, ' '], [8, 3, ' '], [9, 3, ' ']],
+        [[0, 4, ' '], [1, 4, ' '], [2, 4, ' '], [3, 4, 'o'], [4, 4, 'o'], [5, 4, 'o'], [6, 4, ' '], [7, 4, ' '], [8, 4, ' '], [9, 4, ' ']],
+        [[0, 5, 'o'], [1, 5, ' '], [2, 5, ' '], [3, 5, 'o'], [4, 5, 'o'], [5, 5, 'o'], [6, 5, ' '], [7, 5, ' '], [8, 5, ' '], [9, 5, ' ']],
+        [[0, 6, ' '], [1, 6, 'o'], [2, 6, ' '], [3, 6, ' '], [4, 6, 'o'], [5, 6, 'o'], [6, 6, 'o'], [7, 6, ' '], [8, 6, ' '], [9, 6, ' ']],
+        [[0, 7, ' '], [1, 7, ' '], [2, 7, 'o'], [3, 7, ' '], [4, 7, 'o'], [5, 7, 'o'], [6, 7, ' '], [7, 7, 'o'], [8, 7, ' '], [9, 7, ' ']],
+        [[0, 8, ' '], [1, 8, ' '], [2, 8, ' '], [3, 8, 'o'], [4, 8, ' '], [5, 8, ' '], [6, 8, ' '], [7, 8, ' '], [8, 8, ' '], [9, 8, ' ']],
+        [[0, 9, ' '], [1, 9, ' '], [2, 9, ' '], [3, 9, ' '], [4, 9, 'o'], [5, 9, ' '], [6, 9, ' '], [7, 9, ' '], [8, 9, ' '], [9, 9, ' ']]
     ];
 //*/
 /*
 matrix =
     [
-        [[0, 0, ' '], [1, 0, ' '], [2, 0, ' '], [3, 0, ' '], [4, 0, ' '], [5, 0, 'O'], [6, 0, ' '], [7, 0, ' '], [8, 0, ' '], [9, 0, ' ']],
-        [[0, 1, ' '], [1, 1, ' '], [2, 1, ' '], [3, 1, ' '], [4, 1, 'O'], [5, 1, ' '], [6, 1, 'O'], [7, 1, ' '], [8, 1, 'O'], [9, 1, ' ']],
-        [[0, 2, ' '], [1, 2, 'O'], [2, 2, ' '], [3, 2, ' '], [4, 2, ' '], [5, 2, 'O'], [6, 2, ' '], [7, 2, 'O'], [8, 2, ' '], [9, 2, ' ']],
-        [[0, 3, 'O'], [1, 3, ' '], [2, 3, 'O'], [3, 3, ' '], [4, 3, ' '], [5, 3, ' '], [6, 3, 'O'], [7, 3, ' '], [8, 3, ' '], [9, 3, ' ']],
-        [[0, 4, 'O'], [1, 4, ' '], [2, 4, ' '], [3, 4, 'O'], [4, 4, 'O'], [5, 4, 'O'], [6, 4, 'O'], [7, 4, ' '], [8, 4, ' '], [9, 4, ' ']],
-        [[0, 5, 'O'], [1, 5, ' '], [2, 5, ' '], [3, 5, ' '], [4, 5, 'O'], [5, 5, ' '], [6, 5, ' '], [7, 5, ' '], [8, 5, ' '], [9, 5, ' ']],
-        [[0, 6, 'O'], [1, 6, ' '], [2, 6, ' '], [3, 6, ' '], [4, 6, ' '], [5, 6, 'O'], [6, 6, ' '], [7, 6, ' '], [8, 6, ' '], [9, 6, ' ']],
-        [[0, 7, 'O'], [1, 7, 'O'], [2, 7, 'O'], [3, 7, 'O'], [4, 7, 'O'], [5, 7, ' '], [6, 7, ' '], [7, 7, ' '], [8, 7, ' '], [9, 7, ' ']],
+        [[0, 0, ' '], [1, 0, ' '], [2, 0, ' '], [3, 0, ' '], [4, 0, ' '], [5, 0, 'o'], [6, 0, ' '], [7, 0, ' '], [8, 0, ' '], [9, 0, ' ']],
+        [[0, 1, ' '], [1, 1, ' '], [2, 1, ' '], [3, 1, ' '], [4, 1, 'o'], [5, 1, ' '], [6, 1, 'o'], [7, 1, ' '], [8, 1, 'o'], [9, 1, ' ']],
+        [[0, 2, ' '], [1, 2, 'o'], [2, 2, ' '], [3, 2, ' '], [4, 2, ' '], [5, 2, 'o'], [6, 2, ' '], [7, 2, 'o'], [8, 2, ' '], [9, 2, ' ']],
+        [[0, 3, 'o'], [1, 3, ' '], [2, 3, 'o'], [3, 3, ' '], [4, 3, ' '], [5, 3, ' '], [6, 3, 'o'], [7, 3, ' '], [8, 3, ' '], [9, 3, ' ']],
+        [[0, 4, 'o'], [1, 4, ' '], [2, 4, ' '], [3, 4, 'o'], [4, 4, 'o'], [5, 4, 'o'], [6, 4, 'o'], [7, 4, ' '], [8, 4, ' '], [9, 4, ' ']],
+        [[0, 5, 'o'], [1, 5, ' '], [2, 5, ' '], [3, 5, ' '], [4, 5, 'o'], [5, 5, ' '], [6, 5, ' '], [7, 5, ' '], [8, 5, ' '], [9, 5, ' ']],
+        [[0, 6, 'o'], [1, 6, ' '], [2, 6, ' '], [3, 6, ' '], [4, 6, ' '], [5, 6, 'o'], [6, 6, ' '], [7, 6, ' '], [8, 6, ' '], [9, 6, ' ']],
+        [[0, 7, 'o'], [1, 7, 'o'], [2, 7, 'o'], [3, 7, 'o'], [4, 7, 'o'], [5, 7, ' '], [6, 7, ' '], [7, 7, ' '], [8, 7, ' '], [9, 7, ' ']],
         [[0, 8, ' '], [1, 8, ' '], [2, 8, ' '], [3, 8, ' '], [4, 8, ' '], [5, 8, ' '], [6, 8, ' '], [7, 8, ' '], [8, 8, ' '], [9, 8, ' ']],
         [[0, 9, ' '], [1, 9, ' '], [2, 9, ' '], [3, 9, ' '], [4, 9, ' '], [5, 9, ' '], [6, 9, ' '], [7, 9, ' '], [8, 9, ' '], [9, 9, ' ']]
     ];
 //*/
 matrix =
     [
-        [[0, 0, 'x'], [1, 0, ' '], [2, 0, ' '], [3, 0, ' '], [4, 0, ' '], [5, 0, ' '], [6, 0, ' '], [7, 0, ' '], [8, 0, ' '], [9, 0, ' ']],
+        [[0, 0, ' '], [1, 0, ' '], [2, 0, ' '], [3, 0, ' '], [4, 0, ' '], [5, 0, ' '], [6, 0, ' '], [7, 0, ' '], [8, 0, ' '], [9, 0, ' ']],
         [[0, 1, ' '], [1, 1, ' '], [2, 1, ' '], [3, 1, ' '], [4, 1, ' '], [5, 1, ' '], [6, 1, ' '], [7, 1, ' '], [8, 1, ' '], [9, 1, ' ']],
-        [[0, 2, ' '], [1, 2, ' '], [2, 2, ' '], [3, 2, ' '], [4, 2, ' '], [5, 2, ' '], [6, 2, ' '], [7, 2, ' '], [8, 2, ' '], [9, 2, ' ']],
-        [[0, 3, 'O'], [1, 3, ' '], [2, 3, ' '], [3, 3, ' '], [4, 3, ' '], [5, 3, ' '], [6, 3, ' '], [7, 3, ' '], [8, 3, ' '], [9, 3, ' ']],
-        [[0, 4, 'O'], [1, 4, ' '], [2, 4, ' '], [3, 4, ' '], [4, 4, ' '], [5, 4, ' '], [6, 4, ' '], [7, 4, ' '], [8, 4, ' '], [9, 4, ' ']],
-        [[0, 5, ' '], [1, 5, ' '], [2, 5, ' '], [3, 5, ' '], [4, 5, ' '], [5, 5, ' '], [6, 5, ' '], [7, 5, ' '], [8, 5, ' '], [9, 5, ' ']],
-        [[0, 6, 'x'], [1, 6, ' '], [2, 6, ' '], [3, 6, ' '], [4, 6, ' '], [5, 6, ' '], [6, 6, ' '], [7, 6, ' '], [8, 6, ' '], [9, 6, ' ']],
+        [[0, 2, 'o'], [1, 2, ' '], [2, 2, ' '], [3, 2, ' '], [4, 2, ' '], [5, 2, ' '], [6, 2, ' '], [7, 2, ' '], [8, 2, ' '], [9, 2, ' ']],
+        [[0, 3, 'o'], [1, 3, ' '], [2, 3, ' '], [3, 3, ' '], [4, 3, ' '], [5, 3, ' '], [6, 3, ' '], [7, 3, ' '], [8, 3, ' '], [9, 3, ' ']],
+        [[0, 4, 'o'], [1, 4, ' '], [2, 4, ' '], [3, 4, ' '], [4, 4, ' '], [5, 4, ' '], [6, 4, ' '], [7, 4, ' '], [8, 4, ' '], [9, 4, ' ']],
+        [[0, 5, 'o'], [1, 5, ' '], [2, 5, ' '], [3, 5, ' '], [4, 5, ' '], [5, 5, ' '], [6, 5, ' '], [7, 5, ' '], [8, 5, ' '], [9, 5, ' ']],
+        [[0, 6, ' '], [1, 6, ' '], [2, 6, ' '], [3, 6, ' '], [4, 6, ' '], [5, 6, ' '], [6, 6, ' '], [7, 6, ' '], [8, 6, ' '], [9, 6, ' ']],
         [[0, 7, ' '], [1, 7, ' '], [2, 7, ' '], [3, 7, ' '], [4, 7, ' '], [5, 7, ' '], [6, 7, ' '], [7, 7, ' '], [8, 7, ' '], [9, 7, ' ']],
-        [[0, 8, ' '], [1, 8, ' '], [2, 8, ' '], [3, 8, ' '], [4, 8, ' '], [5, 8, ' '], [6, 8, ' '], [7, 8, ' '], [8, 8, ' '], [9, 8, ' ']],
-        [[0, 9, 'x'], [1, 9, ' '], [2, 9, ' '], [3, 9, ' '], [4, 9, ' '], [5, 9, ' '], [6, 9, ' '], [7, 9, ' '], [8, 9, ' '], [9, 9, ' ']]
+        [[0, 8, 'o'], [1, 8, ' '], [2, 8, ' '], [3, 8, ' '], [4, 8, ' '], [5, 8, ' '], [6, 8, ' '], [7, 8, ' '], [8, 8, ' '], [9, 8, ' ']],
+        [[0, 9, ' '], [1, 9, ' '], [2, 9, ' '], [3, 9, ' '], [4, 9, ' '], [5, 9, ' '], [6, 9, ' '], [7, 9, ' '], [8, 9, ' '], [9, 9, ' ']]
     ];
 
 //*/
@@ -81,7 +81,7 @@ function findTheLongests() {
     for (let row of matrix) {
         currentSequence = [];
         for (let cell of row) {
-            if (cell[2] === 'O') {
+            if (cell[2] === 'o') {
                 currentSequence.push(cell);
                 if (longestSequence.length <= currentSequence.length) {
                     longestSequence = [...currentSequence];
@@ -99,7 +99,7 @@ function findTheLongests() {
         currentSequence = [];
         for (let rowIndex = 0; rowIndex < matrix.length; rowIndex++) {
             let cell = matrix[rowIndex][colIndex];
-            if (cell[2] === 'O') {
+            if (cell[2] === 'o') {
                 currentSequence.push(cell);
                 if (longestSequence.length <= currentSequence.length) {
                     longestSequence = [...currentSequence];
@@ -118,7 +118,7 @@ function findTheLongests() {
         let startY = 0;
         while (startX <= 9) {
             let cell = matrix[startY][startX];
-            if (cell[2] === 'O') {
+            if (cell[2] === 'o') {
                 currentSequence.push(cell);
                 if (longestSequence.length <= currentSequence.length) {
                     longestSequence = [...currentSequence];
@@ -138,7 +138,7 @@ function findTheLongests() {
         let startY = i;
         while (startY <= 9) {
             let cell = matrix[startY][startX];
-            if (cell[2] === 'O') {
+            if (cell[2] === 'o') {
                 currentSequence.push(cell);
                 if (longestSequence.length <= currentSequence.length) {
                     longestSequence = [...currentSequence];
@@ -160,7 +160,7 @@ function findTheLongests() {
         let startY = 0;
         while (startX >= 0) {
             let cell = matrix[startY][startX];
-            if (cell[2] === 'O') {
+            if (cell[2] === 'o') {
                 currentSequence.push(cell);
                 if (longestSequence.length <= currentSequence.length) {
                     longestSequence = [...currentSequence];
@@ -180,7 +180,7 @@ function findTheLongests() {
         let startY = i;
         while (startY <= 9) {
             let cell = matrix[startY][startX];
-            if (cell[2] === 'O') {
+            if (cell[2] === 'o') {
                 currentSequence.push(cell);
                 if (longestSequence.length <= currentSequence.length) {
                     longestSequence = [...currentSequence];
@@ -208,8 +208,8 @@ let list = findTheLongests();
 //list.forEach(e => console.log(e));
 
 let seq = [
-    [0, 3, 'O'],
-    [0, 4, 'O'],
+    [0, 1, 'o'],
+    [0, 4, 'o'],
     'V'
 ];
 
@@ -217,46 +217,34 @@ let seq = [
 function verticalGo(sequence) {
     if (sequence[sequence.length - 1] !== 'V') return 'not vertical';
 
-    let cellX = sequence[0][0];
+    let seqX = sequence[0][0];
+    let maxY = sequence[0][1];
 
-    let cellTopY = sequence[0][1];
-    let cellBottomY = sequence[sequence.length - 2][1];
+    for (let y = maxY - 1; y >= 0; y--) {
+        let value = matrix[y][seqX][2];
+        if (value !== 'x') {
+            maxY = y;
+        } else {
+            break;
+        }
+    }
 
-    let possibleCountUp = 0;
-    let possibleCountDown = 0;
+    let minY = maxY;
+
+    for (let y = minY; y <= matrix.length - 1; y++) {
+        let value = matrix[y][seqX][2];
+        if (value !== 'x') {
+            minY = y;
+        } else {
+            break;
+        }
+    }
 
     let gapTop = 0;
     let gapBottom = 0;
 
-
-    let isTopOpen =
-        cellTopY !== 0 &&
-        matrix[cellTopY - 1][0][2] === ' ';
-
-    let isBottomOpen =
-        cellBottomY !== matrix.length - 1 &&
-        matrix[cellBottomY + 1][0][2] === ' ';
-
-    for (let y = cellTopY; y <= matrix.length - 1; y++) {
-        let value = matrix[y][cellX][2];
-        if (value === 'O' || value === ' ') {
-            possibleCountDown++
-        } else {
-            break;
-        }
-    }
-
-    for (let y = cellBottomY; y >= 0; y--) {
-        let value = matrix[y][cellX][2];
-        if (value === 'O' || value === ' ') {
-            possibleCountUp++
-        } else {
-            break;
-        }
-    }
-
-    for (let y = cellTopY - 1; y >= 0; y--) {
-        let value = matrix[y][cellX][2];
+    for (let y = seq[0][1] - 1; y >= 0; y--) {
+        let value = matrix[y][seqX][2];
         if (value === ' ') {
             gapTop++
         } else {
@@ -264,8 +252,8 @@ function verticalGo(sequence) {
         }
     }
 
-    for (let y = cellBottomY + 1; y <= matrix.length - 1; y++) {
-        let value = matrix[y][cellX][2];
+    for (let y = seq[1][1] + 1; y <= matrix.length - 1; y++) {
+        let value = matrix[y][seqX][2];
         if (value === ' ') {
             gapBottom++
         } else {
@@ -273,94 +261,35 @@ function verticalGo(sequence) {
         }
     }
 
-    let isGoodToGoUp =
-        isTopOpen &&
-        possibleCountUp >= 5;
+    let possibleMaxLength = minY - maxY + 1;
 
-    let isGoodToGoDown =
-        isBottomOpen &&
-        possibleCountDown >= 5;
+    console.log('maxY:', maxY);
+    console.log('minY:', minY);
+    console.log('Possible max length:', possibleMaxLength);
+    console.log('GapTop:', gapTop);
+    console.log('GapBottom:', gapBottom);
 
     let goTo;
 
-    if (isGoodToGoUp && !isGoodToGoDown) {
-        goTo = 'up';
-    } else if (!isGoodToGoUp && isGoodToGoDown) {
-        goTo = 'down';
-    } else if (isGoodToGoUp && isGoodToGoDown) {
-        goTo = gapTop <= gapBottom ? 'up' : 'down';
+    if (possibleMaxLength < 5) {
+        goTo = 'Choose other sequence or cell!';
+    } else if (gapTop === 0 && gapBottom !== 0) {
+        goTo = 'Go Down!' + `${seqX}, ${seq[1][1] + 1}`;
+    } else if (gapBottom === 0 && gapTop !== 0) {
+        goTo = 'Go Up!' + ` ${seqX}, ${seq[0][1] - 1}`;
+    } else if (gapTop < gapBottom) {
+        goTo = 'Go Up!' + ` ${seqX}, ${seq[0][1] - 1}`;
+    } else if (gapBottom < gapTop) {
+        goTo = 'Go Down!' + ` ${seqX}, ${seq[1][1] + 1}`;
+    } else if (gapTop === gapBottom && gapBottom !== 0) {
+        goTo = 'Go UP' + ` ${seqX}, ${seq[0][1] - 1}`;
     } else {
-        goTo = 'choose other sequence or cell'
+        goTo = 'No gap!';
     }
-
-    /*console.log('Top Open:', isTopOpen);
-    console.log('Possible Up:', possibleCountUp);
-    console.log('Good to Go Up?', isGoodToGoUp);
-
-    console.log('-------------------');
-
-    console.log('Bottom Open:', isBottomOpen);
-    console.log('Possible Down:', possibleCountDown);
-    console.log('Good to Go Down?', isGoodToGoDown);
-
-    console.log('-------------------');
-
-    console.log('Go To:', goTo);*/
 
     return goTo;
 }
 
 console.log(verticalGo(seq));
-
-
-/////list = [[
-/////    [0, 7, 'O'],
-/////    [1, 7, 'O'],
-/////    [2, 7, 'O'],
-/////    [3, 7, 'O'],
-/////    [4, 7, 'O'],
-/////    [5, 7, 'O'],
-/////    [6, 7, 'O'],
-/////    [9, 7, 'O']
-/////]];
-
-//let edgesX = [0, matrix.length - 1];
-
-/////if (list.length === 0) {
-/////    // First Step
-/////    console.log(list);
-/////    console.log('First Step, length: 0');
-/////} else if (list.length === 1) {
-/////    /*
-/////    - Check which end is open
-/////    - Then put to the end
-/////    */
-/////
-/////    let cellLeft = list[0][0];
-/////    let cellRight = list[0][list[0].length - 1];
-/////
-/////    //console.log(cellLeft, cellRight);
-/////
-/////    let leftIsOpen = !(
-/////        cellLeft[0] === 0 || cellLeft[0] === matrix.length - 1 ||
-/////        cellLeft[1] === 0 || cellLeft[1] === matrix.length - 1
-/////    );
-/////
-/////    let rightIsOpen = !(
-/////        cellRight[0] === 0 || cellRight[0] === matrix.length - 1 ||
-/////        cellRight[1] === 0 || cellRight[1] === matrix.length - 1
-/////    );
-/////
-/////    console.log(leftIsOpen, rightIsOpen);
-/////    //console.log(list);
-/////    //console.log('Put to the end, length: 1');
-/////} else {
-/////    // Choose one and put to the end
-/////    console.log(list);
-/////    console.log('Choose one and put to the end, length > 1');
-/////}
-
-
-
 
 
