@@ -2,10 +2,10 @@ import React from 'react';
 
 export default function Developer() {
     return (
-        <div style={{ backgroundColor: /*'#333'*/'transparent', textAlign: 'center', padding: '1rem', marginBottom: '0', marginTop: 'auto' }}>
+        <div style={{ backgroundColor: 'transparent', textAlign: 'center', padding: '1rem', marginBottom: '0', marginTop: 'auto' }}>
             <p>
                 <span style={{ marginRight: '0.5rem', fontSize: '1rem', color: '#AAAAAA' }}>
-                    Powered by
+                    Created by
                 </span>
                 <a
                     style={{
@@ -16,15 +16,15 @@ export default function Developer() {
                     }}
                     target="_blank"
                     rel="noopener noreferrer"
-                    href="https://www.webdevme.co.uk"
+                    href="https://www.karolyhornyak.co.uk"
                     onMouseEnter={(event) => {
-                        event.target.style.color = '#fff'; // Change text color to white when hovering
+                        event.target.style.color = '#fff';
                     }}
                     onMouseLeave={(event) => {
-                        event.target.style.color = '#AAAAAA'; // Restore the original text color when not hovering
+                        event.target.style.color = '#AAAAAA';
                     }}
                 >
-                    webdevme.co.uk
+                    Karoly Hornyak
                 </a>
             </p>
         </div>
