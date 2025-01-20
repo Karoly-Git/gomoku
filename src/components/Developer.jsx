@@ -5,7 +5,7 @@ export default function Developer() {
         <div style={{ backgroundColor: 'transparent', textAlign: 'center', padding: '1rem', marginBottom: '0', marginTop: 'auto' }}>
             <p>
                 <span style={{ marginRight: '0.5rem', fontSize: '1rem', color: '#AAAAAA' }}>
-                    Created by
+                    Made by
                 </span>
                 <a
                     style={{
